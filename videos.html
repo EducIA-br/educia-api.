@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>EducIA — Vídeos</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  body{background:var(--foreground)}
+  .page-hero{background:linear-gradient(135deg,#060810 0%,#0d1f4a 100%)}
+  .section{background:var(--foreground)}
+  .section-intro h2{color:#fff}
+  .section-intro .eyebrow{color:var(--cobalt-light)}
+  .section-intro p{color:rgba(255,255,255,.5)}
+  .videos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  @media(max-width:900px){.videos-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.videos-grid{grid-template-columns:1fr}}
+  .video-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:16px;overflow:hidden;transition:transform .3s,box-shadow .3s}
+  .video-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(0,0,0,.4)}
+  .video-placeholder{position:relative;width:100%;padding-top:56.25%;background:rgba(255,255,255,.03);overflow:hidden}
+  .video-placeholder iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
+  .video-placeholder.empty .add-icon{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:rgba(255,255,255,.2);font-size:13px;font-weight:500;border-bottom:1px dashed rgba(255,255,255,.1)}
+  .add-icon .circle{width:52px;height:52px;border-radius:50%;border:2px dashed rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:22px;color:rgba(255,255,255,.2);transition:border-color .3s,color .3s}
+  .video-card:hover .circle{border-color:var(--cobalt-light);color:var(--cobalt-light)}
+  .video-info{padding:20px}
+  .video-info h4{font-size:15px;font-weight:600;margin-bottom:6px;color:#fff}
+  .video-info p{font-size:13px;color:rgba(255,255,255,.4)}
+  .video-info.empty-info h4{color:rgba(255,255,255,.3)}
+  .video-info.empty-info p{color:rgba(255,255,255,.2)}
+  /* instrução */
+  .video-tip{margin-top:48px;padding:24px 32px;background:rgba(255,255,255,.04);border:1px dashed rgba(255,255,255,.1);border-radius:16px;color:rgba(255,255,255,.4);font-size:13px;text-align:center;max-width:700px;margin-left:auto;margin-right:auto}
+  .video-tip code{background:rgba(255,255,255,.08);padding:2px 8px;border-radius:4px;font-family:monospace;color:rgba(255,255,255,.7)}
+  footer{background:#060810}
+
+  .bg-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:0;pointer-events:none}
+  .page-hero{position:relative;overflow:hidden}
+  .page-hero-content{position:relative;z-index:1}
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<nav class="nav" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Educ<span>IA</span></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="sobre.html">O que é IA</a>
+      <a href="pilares.html">Pilares</a>
+      <a href="debate.html">O Debate</a>
+      <a href="pensadores.html">Pensadores</a>
+      <a href="planos.html">Planos</a>
+    </div>
+    <div class="nav-right"><a href="videos.html" class="nav-video-btn"><span class="play-icon">▶</span> Vídeo</a></div>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <canvas id="bgCanvas" class="bg-canvas"></canvas>
+  <div class="page-hero-content container">
+    <span class="eyebrow">Conteúdo em Vídeo</span>
+    <h1>Nossos vídeos</h1>
+    <p>Assista aos vídeos do projeto EducIA sobre inteligência artificial e educação.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="videos-grid stagger">
+      <div class="video-card">
+        <div class="video-placeholder empty">
+          <div class="add-icon"><div class="circle">▶</div>Cole o link do vídeo aqui</div>
+        </div>
+        <div class="video-info empty-info"><h4>Título do vídeo 1</h4><p>Descrição breve do vídeo</p></div>
+      </div>
+      <div class="video-card">
+        <div class="video-placeholder empty">
+          <div class="add-icon"><div class="circle">▶</div>Cole o link do vídeo aqui</div>
+        </div>
+        <div class="video-info empty-info"><h4>Título do vídeo 2</h4><p>Descrição breve do vídeo</p></div>
+      </div>
+      <div class="video-card">
+        <div class="video-placeholder empty">
+          <div class="add-icon"><div class="circle">▶</div>Cole o link do vídeo aqui</div>
+        </div>
+        <div class="video-info empty-info"><h4>Título do vídeo 3</h4><p>Descrição breve do vídeo</p></div>
+      </div>
+    </div>
+    <div class="video-tip reveal">
+      Para adicionar um vídeo, substitua o conteúdo do card por:<br><br>
+      <code>&lt;div class="video-placeholder"&gt;&lt;iframe src="https://www.youtube.com/embed/ID_DO_VIDEO" allowfullscreen&gt;&lt;/iframe&gt;&lt;/div&gt;</code>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div><a href="index.html" class="logo" style="color:#fff">Educ<span style="color:var(--cobalt-light)">IA</span></a><p>Inteligência artificial na educação: uma questão que define o futuro da humanidade.</p></div>
+      <div><h4>Navegação</h4><a href="sobre.html">O que é IA</a><br><a href="pilares.html">Pilares</a><br><a href="debate.html">O Debate</a><br><a href="pensadores.html">Pensadores</a><br><a href="videos.html">Vídeo</a></div>
+      <div><h4>Projeto</h4><a href="#">Pesquisa e fontes</a><br><a href="#">Cetic.br, Unibanco, UTFPR</a><br><a href="#">Krenak &amp; Sérgio Amadeu</a></div>
+    </div>
+    <div class="footer-bottom">© 2026 EducIA — Projeto editorial sobre IA e educação.</div>
+  </div>
+</footer>
+<script src="script.js"></script>
+<script src="bg.js"></script>
+<script>createNetworkBg('bgCanvas', {color:'59,111,224', dots:55});</script>
+</body></html>
