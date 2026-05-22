@@ -17,38 +17,35 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Campo messages ausente' });
   }
 
-  const apiKey = process.env.GEMINI_API_KEY;
+  const apiKey = process.env.GROQ_API_KEY;
   if (!apiKey) return res.status(500).json({ error: 'Chave não configurada' });
 
   try {
-    // Monta histórico no formato do Gemini
-    const contents = messages.map(m => ({
-      role: m.role === 'assistant' ? 'model' : 'user',
-      parts: [{ text: m.content }]
-    }));
+    const groqMessages = system
+      ? [{ role: 'system', content: system }, ...messages]
+      : messages;
 
-    const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          system_instruction: system ? { parts: [{ text: system }] } : undefined,
-          contents,
-          generationConfig: { maxOutputTokens: 1000 }
-        }),
-      }
-    );
+    const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`,
+      },
+      body: JSON.stringify({
+        model: 'llama-3.3-70b-versatile',
+        max_tokens: 1000,
+        messages: groqMessages,
+      }),
+    });
 
     const data = await response.json();
 
     if (!response.ok) {
-      console.error('Gemini error:', data);
+      console.error('Groq error:', data);
       return res.status(response.status).json({ error: data.error?.message || 'Erro na API' });
     }
 
-    // Retorna no mesmo formato que o frontend espera
-    const text = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+    const text = data.choices?.[0]?.message?.content || '';
     return res.status(200).json({ content: [{ type: 'text', text }] });
 
   } catch (err) {
