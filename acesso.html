@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>EducIA — Área do Assinante</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.access-section{min-height:80vh;display:flex;align-items:center;justify-content:center;padding:40px 20px}
+.access-box{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:48px 40px;max-width:440px;width:100%;text-align:center;box-shadow:0 8px 40px rgba(0,0,0,0.06)}
+.access-icon{font-size:48px;margin-bottom:16px}
+.access-box h2{font-size:24px;font-weight:800;margin-bottom:8px}
+.access-box p{color:var(--muted-fg);font-size:15px;margin-bottom:32px}
+.code-input{width:100%;padding:16px;border:2px solid var(--border);border-radius:12px;font-size:18px;font-weight:700;letter-spacing:.15em;text-align:center;text-transform:uppercase;font-family:'Montserrat',sans-serif;outline:none;transition:border-color .2s;background:var(--bg);color:var(--foreground);box-sizing:border-box}
+.code-input:focus{border-color:var(--cobalt)}
+.code-input::placeholder{font-size:14px;font-weight:400;letter-spacing:0;text-transform:none}
+.access-btn{width:100%;margin-top:16px;padding:16px;background:var(--cobalt);color:#fff;border:none;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;font-family:'Montserrat',sans-serif;transition:all .25s}
+.access-btn:hover{background:var(--cobalt-light);box-shadow:0 6px 20px rgba(0,51,160,0.35)}
+.access-btn:disabled{opacity:0.5;cursor:not-allowed}
+.access-error{margin-top:12px;color:#ef4444;font-size:13px;font-weight:600;display:none}
+.access-hint{margin-top:24px;font-size:13px;color:var(--muted-fg)}
+.access-hint a{color:var(--cobalt);font-weight:600}
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<nav class="nav" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Educ<span>IA</span></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="sobre.html">O que é IA</a>
+      <a href="pilares.html">Pilares</a>
+      <a href="debate.html">O Debate</a>
+      <a href="pensadores.html">Pensadores</a>
+      <a href="planos.html">Planos</a>
+    </div>
+  </div>
+</nav>
+
+<section class="access-section">
+  <div class="access-box reveal">
+    <div class="access-icon">🔐</div>
+    <h2>Área do Assinante</h2>
+    <p>Digite o código de acesso que você recebeu por e-mail após a sua assinatura.</p>
+    <input class="code-input" id="codeInput" type="text" placeholder="Ex: EDUCIA-XXXXXXXX" maxlength="15"
+      oninput="this.value=this.value.toUpperCase()"
+      onkeydown="if(event.key==='Enter') verificarCodigo()">
+    <button class="access-btn" id="accessBtn" onclick="verificarCodigo()">Entrar</button>
+    <div class="access-error" id="accessError">❌ Código inválido. Verifique e tente novamente.</div>
+    <p class="access-hint">Ainda não é assinante? <a href="planos.html">Ver planos</a></p>
+  </div>
+</section>
+
+<script src="script.js"></script>
+<script>
+// Verifica se já está logado
+if (sessionStorage.getItem('educia_access') === 'granted') {
+  window.location.href = 'ferramentas.html';
+}
+
+async function verificarCodigo() {
+  const code = document.getElementById('codeInput').value.trim();
+  const btn = document.getElementById('accessBtn');
+  const error = document.getElementById('accessError');
+
+  if (!code) return;
+
+  btn.disabled = true;
+  btn.textContent = 'Verificando...';
+  error.style.display = 'none';
+
+  try {
+    const res = await fetch('https://educia-api-9iq5.vercel.app/api/verify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ code })
+    });
+    const data = await res.json();
+
+    if (data.valid) {
+      sessionStorage.setItem('educia_access', 'granted');
+      window.location.href = 'ferramentas.html';
+    } else {
+      error.style.display = 'block';
+    }
+  } catch(e) {
+    error.textContent = '❌ Erro de conexão. Tente novamente.';
+    error.style.display = 'block';
+  }
+
+  btn.disabled = false;
+  btn.textContent = 'Entrar';
+}
+</script>
+</body>
+</html>

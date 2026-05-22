@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>EducIA — Ferramentas de IA</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.tools-hero{padding:96px 0 48px;text-align:center}
+.tools-hero p{margin-top:12px;color:var(--muted-fg);max-width:560px;margin-left:auto;margin-right:auto}
+
+.tools-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding-bottom:96px}
+@media(max-width:900px){.tools-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:580px){.tools-grid{grid-template-columns:1fr}}
+
+.tool-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:28px;transition:all .3s;display:flex;flex-direction:column;gap:12px}
+.tool-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,0.08)}
+.tool-icon{font-size:36px}
+.tool-name{font-size:17px;font-weight:800}
+.tool-tag{display:inline-block;background:rgba(0,51,160,0.08);color:var(--cobalt);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:999px}
+.tool-desc{font-size:14px;color:var(--muted-fg);line-height:1.7;flex:1}
+.tool-use{margin-top:4px}
+.tool-use h4{font-size:13px;font-weight:700;margin-bottom:6px;color:var(--foreground)}
+.tool-use ul{list-style:none;display:flex;flex-direction:column;gap:4px}
+.tool-use ul li{font-size:13px;color:var(--muted-fg);padding-left:14px;position:relative}
+.tool-use ul li::before{content:"→";position:absolute;left:0;color:var(--cobalt)}
+.tool-link{margin-top:8px;display:inline-flex;align-items:center;gap:6px;color:var(--cobalt);font-size:13px;font-weight:700;text-decoration:none}
+.tool-link:hover{text-decoration:underline}
+
+.logout-bar{background:var(--muted);border-bottom:1px solid var(--border);padding:10px 0;text-align:center;font-size:13px;color:var(--muted-fg)}
+.logout-bar a{color:var(--cobalt);font-weight:600;cursor:pointer}
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+
+<div class="logout-bar">
+  Você está na área exclusiva de assinantes. <a onclick="sair()">Sair</a>
+</div>
+
+<nav class="nav" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Educ<span>IA</span></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="sobre.html">O que é IA</a>
+      <a href="pilares.html">Pilares</a>
+      <a href="debate.html">O Debate</a>
+      <a href="pensadores.html">Pensadores</a>
+      <a href="planos.html">Planos</a>
+      <a href="ferramentas.html" style="color:var(--cobalt);font-weight:700">🔒 Ferramentas</a>
+    </div>
+  </div>
+</nav>
+
+<section class="tools-hero">
+  <div class="container">
+    <span class="eyebrow">Área Exclusiva</span>
+    <h1>Ferramentas de IA para Educação</h1>
+    <p>As principais IAs educacionais do mercado, com guias de como usar e para que servem.</p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="tools-grid stagger reveal">
+
+      <div class="tool-card">
+        <div class="tool-icon">🤖</div>
+        <div class="tool-name">ChatGPT</div>
+        <span class="tool-tag">Escrita & Pesquisa</span>
+        <p class="tool-desc">O assistente de IA mais popular do mundo. Ideal para escrever, resumir textos, tirar dúvidas e aprender novos assuntos de forma conversacional.</p>
+        <div class="tool-use">
+          <h4>Como usar na educação:</h4>
+          <ul>
+            <li>Resumir capítulos de livros</li>
+            <li>Criar exercícios e simulados</li>
+            <li>Explicar conceitos difíceis</li>
+            <li>Revisar redações e textos</li>
+          </ul>
+        </div>
+        <a class="tool-link" href="https://chat.openai.com" target="_blank">Acessar ChatGPT ↗</a>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-icon">✨</div>
+        <div class="tool-name">Google Gemini</div>
+        <span class="tool-tag">Pesquisa & Análise</span>
+        <p class="tool-desc">IA do Google integrada com a busca. Excelente para pesquisas atualizadas, análise de documentos e integração com o Google Workspace (Docs, Sheets).</p>
+        <div class="tool-use">
+          <h4>Como usar na educação:</h4>
+          <ul>
+            <li>Pesquisar temas com fontes atuais</li>
+            <li>Analisar PDFs e documentos</li>
+            <li>Criar apresentações no Google Slides</li>
+            <li>Organizar dados no Google Sheets</li>
+          </ul>
+        </div>
+        <a class="tool-link" href="https://gemini.google.com" target="_blank">Acessar Gemini ↗</a>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-icon">🧠</div>
+        <div class="tool-name">Claude (Anthropic)</div>
+        <span class="tool-tag">Redação & Análise</span>
+        <p class="tool-desc">IA conhecida por respostas precisas, éticas e bem estruturadas. Ótima para análises profundas, escrita acadêmica e discussões complexas.</p>
+        <div class="tool-use">
+          <h4>Como usar na educação:</h4>
+          <ul>
+            <li>Escrever trabalhos acadêmicos</li>
+            <li>Analisar argumentos e debates</li>
+            <li>Estudar filosofia e ciências humanas</li>
+            <li>Feedback detalhado em textos</li>
+          </ul>
+        </div>
+        <a class="tool-link" href="https://claude.ai" target="_blank">Acessar Claude ↗</a>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-icon">🎓</div>
+        <div class="tool-name">Khan Academy Khanmigo</div>
+        <span class="tool-tag">Tutoria</span>
+        <p class="tool-desc">Tutor de IA da Khan Academy. Em vez de dar respostas diretas, faz perguntas para guiar o aluno até a solução — ótimo para aprender de verdade.</p>
+        <div class="tool-use">
+          <h4>Como usar na educação:</h4>
+          <ul>
+            <li>Aprender matemática passo a passo</li>
+            <li>Praticar ciências e história</li>
+            <li>Preparação para vestibulares</li>
+            <li>Aprendizado autoguiado</li>
+          </ul>
+        </div>
+        <a class="tool-link" href="https://www.khanacademy.org/khan-labs" target="_blank">Acessar Khanmigo ↗</a>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-icon">📝</div>
+        <div class="tool-name">Notion AI</div>
+        <span class="tool-tag">Organização & Notas</span>
+        <p class="tool-desc">IA integrada ao Notion para organizar estudos, criar resumos automáticos, gerar planos de estudo e estruturar anotações de forma inteligente.</p>
+        <div class="tool-use">
+          <h4>Como usar na educação:</h4>
+          <ul>
+            <li>Criar planos de estudo personalizados</li>
+            <li>Resumir anotações de aula</li>
+            <li>Organizar projetos e trabalhos</li>
+            <li>Gerar flashcards para revisão</li>
+          </ul>
+        </div>
+        <a class="tool-link" href="https://notion.so" target="_blank">Acessar Notion AI ↗</a>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-icon">🎨</div>
+        <div class="tool-name">Canva AI</div>
+        <span class="tool-tag">Design & Apresentações</span>
+        <p class="tool-desc">Ferramentas de IA dentro do Canva para criar apresentações, infográficos e materiais visuais educacionais de forma rápida e profissional.</p>
+        <div class="tool-use">
+          <h4>Como usar na educação:</h4>
+          <ul>
+            <li>Criar slides de apresentação</li>
+            <li>Gerar infográficos de conteúdo</li>
+            <li>Produzir materiais didáticos</li>
+            <li>Criar posters e banners</li>
+          </ul>
+        </div>
+        <a class="tool-link" href="https://canva.com" target="_blank">Acessar Canva ↗</a>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-icon">🔬</div>
+        <div class="tool-name">Wolfram Alpha</div>
+        <span class="tool-tag">Ciências & Matemática</span>
+        <p class="tool-desc">Motor de conhecimento computacional. Resolve equações, gráficos, química, física e biologia com explicações detalhadas passo a passo.</p>
+        <div class="tool-use">
+          <h4>Como usar na educação:</h4>
+          <ul>
+            <li>Resolver problemas de matemática</li>
+            <li>Calcular reações químicas</li>
+            <li>Plotar gráficos de funções</li>
+            <li>Verificar cálculos e fórmulas</li>
+          </ul>
+        </div>
+        <a class="tool-link" href="https://wolframalpha.com" target="_blank">Acessar Wolfram ↗</a>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-icon">🌍</div>
+        <div class="tool-name">Duolingo Max</div>
+        <span class="tool-tag">Idiomas</span>
+        <p class="tool-desc">Versão premium do Duolingo com IA para praticar conversação em outro idioma, receber explicações personalizadas e feedback em tempo real.</p>
+        <div class="tool-use">
+          <h4>Como usar na educação:</h4>
+          <ul>
+            <li>Aprender idiomas com IA conversacional</li>
+            <li>Praticar pronúncia e escuta</li>
+            <li>Entender erros gramaticais</li>
+            <li>Preparação para provas de idioma</li>
+          </ul>
+        </div>
+        <a class="tool-link" href="https://duolingo.com" target="_blank">Acessar Duolingo ↗</a>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-icon">📚</div>
+        <div class="tool-name">Perplexity AI</div>
+        <span class="tool-tag">Pesquisa</span>
+        <p class="tool-desc">Mecanismo de busca com IA que responde perguntas com fontes citadas e atualizadas. Ideal para pesquisas acadêmicas confiáveis.</p>
+        <div class="tool-use">
+          <h4>Como usar na educação:</h4>
+          <ul>
+            <li>Pesquisar com fontes confiáveis</li>
+            <li>Encontrar referências bibliográficas</li>
+            <li>Monitorar novidades científicas</li>
+            <li>Aprofundar temas de estudo</li>
+          </ul>
+        </div>
+        <a class="tool-link" href="https://perplexity.ai" target="_blank">Acessar Perplexity ↗</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div><a href="index.html" class="logo" style="color:#fff">Educ<span style="color:var(--cobalt-light)">IA</span></a><p>Inteligência artificial na educação: uma questão que define o futuro da humanidade.</p></div>
+      <div><h4>Navegação</h4><a href="sobre.html">O que é IA</a><br><a href="pilares.html">Pilares</a><br><a href="debate.html">O Debate</a><br><a href="pensadores.html">Pensadores</a><br><a href="videos.html">Vídeo</a></div>
+      <div><h4>Assinantes</h4><a href="planos.html">Ver planos</a><br><a href="acesso.html">Área do assinante</a></div>
+    </div>
+    <div class="footer-bottom">© 2026 EducIA — Projeto editorial sobre IA e educação.</div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+// Verifica acesso
+if (sessionStorage.getItem('educia_access') !== 'granted') {
+  window.location.href = 'acesso.html';
+}
+
+function sair() {
+  sessionStorage.removeItem('educia_access');
+  window.location.href = 'index.html';
+}
+</script>
+</body>
+</html>
