@@ -136,7 +136,7 @@
       <div class="plan-card">
         <div class="plan-name">Gratuito</div>
         <div class="plan-price">R$0<span>/mês</span></div>
-        <p class="plan-desc">Para quem quer explorar o conteúdo antes de se comprometer.</p>
+        <p class="plan-desc">Explore o conteúdo sem compromisso. Ideal para quem está começando.</p>
         <div class="plan-divider"></div>
         <ul class="plan-features">
           <li>Acesso a 2 vídeos por mês</li>
@@ -146,6 +146,7 @@
           <li class="off">Exercícios práticos com IA</li>
           <li class="off">Certificado de conclusão</li>
         </ul>
+        <p style="font-size:13px;color:var(--muted-fg);margin-top:8px">💬 Tem dúvidas? <a href="#" onclick="scrollToChat();return false;" style="color:var(--cobalt);font-weight:600">Pergunte ao nosso bot</a></p>
         <button class="plan-cta outline" onclick="selectPlan('Gratuito')">Começar grátis</button>
       </div>
 
@@ -159,11 +160,10 @@
           <li>Vídeos completos ilimitados</li>
           <li>Exercícios práticos com IA</li>
           <li>Artigos e guias exclusivos</li>
-          <li>Newsletter semanal</li>
           <li>Certificado de conclusão</li>
-          <li class="off">Mentorias ao vivo</li>
         </ul>
-        <button class="plan-cta primary" onclick="window.location.href='pagamento.html?plano=Pro'">Assinar Pro</button>
+        <p style="font-size:13px;color:var(--muted-fg);margin-top:8px">💬 Tem dúvidas? <a href="#" onclick="scrollToChat();return false;" style="color:var(--cobalt);font-weight:600">Pergunte ao nosso bot</a></p>
+        <button class="plan-cta primary" onclick="confirmarPlano('Pro', 'R$29/mês')">Assinar Pro</button>
       </div>
 
       <div class="plan-card">
@@ -174,12 +174,11 @@
         <ul class="plan-features">
           <li>Tudo do plano Pro</li>
           <li>Mentorias ao vivo mensais</li>
-          <li>Acesso à comunidade exclusiva</li>
-          <li>Trilhas de aprendizado personalizadas</li>
+          <li>Comunidade exclusiva</li>
           <li>Suporte prioritário</li>
-          <li>Early access a novos conteúdos</li>
         </ul>
-        <button class="plan-cta outline" onclick="window.location.href='pagamento.html?plano=Premium'">Assinar Premium</button>
+        <p style="font-size:13px;color:var(--muted-fg);margin-top:8px">💬 Tem dúvidas? <a href="#" onclick="scrollToChat();return false;" style="color:var(--cobalt);font-weight:600">Pergunte ao nosso bot</a></p>
+        <button class="plan-cta outline" onclick="confirmarPlano('Premium', 'R$69/mês')">Assinar Premium</button>
       </div>
 
     </div>
@@ -345,11 +344,59 @@ window.addEventListener('load', () => {
   }, 500);
 });
 
+
+let _planoAtual = '';
+
+function confirmarPlano(plano, preco) {
+  _planoAtual = plano;
+  document.getElementById('modalPlanName').textContent = 'Plano ' + plano;
+  document.getElementById('modalPlanPrice').textContent = preco;
+  document.getElementById('confirmModal').style.display = 'flex';
+}
+
+function irParaPagamento() {
+  document.getElementById('confirmModal').style.display = 'none';
+  window.location.href = 'pagamento.html?plano=' + _planoAtual;
+}
+
+function irParaBot() {
+  document.getElementById('confirmModal').style.display = 'none';
+  scrollToChat();
+  setTimeout(() => {
+    document.getElementById('chatInput').value = 'Quero saber mais sobre o plano ' + _planoAtual + ' antes de assinar.';
+    sendMessage();
+  }, 600);
+}
+
+function fecharModal() {
+  document.getElementById('confirmModal').style.display = 'none';
+}
+
+function scrollToChat() {
+  document.querySelector('.chat-section').scrollIntoView({ behavior: 'smooth' });
+  setTimeout(() => document.getElementById('chatInput').focus(), 600);
+}
+
 // Auto-resize textarea
 document.getElementById('chatInput').addEventListener('input', function() {
   this.style.height = 'auto';
   this.style.height = Math.min(this.scrollHeight, 100) + 'px';
 });
 </script>
+
+<!-- Modal de confirmação -->
+<div id="confirmModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:999;align-items:center;justify-content:center">
+  <div style="background:var(--card);border-radius:24px;padding:40px 36px;max-width:420px;width:90%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.2)">
+    <div style="font-size:48px;margin-bottom:12px">🤔</div>
+    <h2 style="font-size:22px;font-weight:800;margin-bottom:8px">Tem certeza?</h2>
+    <p style="color:var(--muted-fg);font-size:15px;margin-bottom:8px">Você está prestes a assinar o <strong id="modalPlanName">Plano Pro</strong> por <strong id="modalPlanPrice">R$29/mês</strong>.</p>
+    <p style="color:var(--muted-fg);font-size:14px;margin-bottom:28px">Se ainda tiver dúvidas, nosso bot pode te ajudar a escolher o plano ideal!</p>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <button onclick="irParaPagamento()" style="padding:14px;background:var(--cobalt);color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit">✅ Sim, quero assinar!</button>
+      <button onclick="irParaBot()" style="padding:14px;background:transparent;color:var(--cobalt);border:1.5px solid var(--cobalt);border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit">💬 Tirar dúvidas com o bot</button>
+      <button onclick="fecharModal()" style="padding:10px;background:transparent;color:var(--muted-fg);border:none;font-size:13px;cursor:pointer;font-family:inherit">Cancelar</button>
+    </div>
+  </div>
+</div>
 </body>
 </html>
