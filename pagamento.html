@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>EducIA — Pagamento</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.pay-section{min-height:90vh;padding:80px 20px;background:var(--bg)}
+.pay-wrapper{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1.4fr;gap:32px;align-items:start}
+@media(max-width:720px){.pay-wrapper{grid-template-columns:1fr}}
+
+/* Resumo do plano */
+.plan-summary{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:32px;position:sticky;top:100px}
+.plan-summary-badge{display:inline-block;background:rgba(0,51,160,0.08);color:var(--cobalt);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;border-radius:999px;margin-bottom:16px}
+.plan-summary h3{font-size:22px;font-weight:800;margin-bottom:4px}
+.plan-price-big{font-size:38px;font-weight:800;letter-spacing:-0.03em;margin:12px 0}
+.plan-price-big span{font-size:16px;font-weight:400;color:var(--muted-fg)}
+.plan-summary-divider{height:1px;background:var(--border);margin:20px 0}
+.plan-features-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.plan-features-list li{font-size:14px;display:flex;align-items:center;gap:8px}
+.plan-features-list li::before{content:"✓";width:20px;height:20px;border-radius:50%;background:rgba(0,51,160,0.08);color:var(--cobalt);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.test-badge{margin-top:20px;background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.3);border-radius:10px;padding:12px;font-size:12px;color:#b45309;text-align:center;font-weight:600}
+
+/* Formulário */
+.pay-form{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:32px}
+.pay-form h2{font-size:20px;font-weight:800;margin-bottom:24px}
+.form-section-title{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--cobalt);margin:24px 0 12px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:480px){.form-row{grid-template-columns:1fr}}
+.form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:4px}
+.form-group label{font-size:13px;font-weight:600;color:var(--foreground)}
+.form-group input{padding:12px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:14px;font-family:'Montserrat',sans-serif;outline:none;transition:border-color .2s;background:var(--bg);color:var(--foreground)}
+.form-group input:focus{border-color:var(--cobalt)}
+.form-group input::placeholder{color:var(--muted-fg)}
+
+/* Método de pagamento */
+.pay-methods{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:4px}
+.pay-method{border:1.5px solid var(--border);border-radius:12px;padding:14px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600}
+.pay-method:hover{border-color:var(--cobalt)}
+.pay-method.selected{border-color:var(--cobalt);background:rgba(0,51,160,0.05)}
+.pay-method-icon{font-size:22px}
+
+/* Campos de cartão */
+#card-fields{margin-top:16px}
+.card-number{font-family:'Montserrat',sans-serif;letter-spacing:.1em}
+
+/* Pix */
+#pix-fields{margin-top:16px;background:var(--muted);border-radius:12px;padding:20px;text-align:center}
+#pix-fields p{font-size:13px;color:var(--muted-fg);margin-top:8px}
+.pix-icon{font-size:40px}
+
+/* Botão pagar */
+.pay-btn{width:100%;margin-top:24px;padding:16px;background:var(--cobalt);color:#fff;border:none;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;font-family:'Montserrat',sans-serif;transition:all .25s}
+.pay-btn:hover{background:var(--cobalt-light);box-shadow:0 6px 20px rgba(0,51,160,0.35)}
+.pay-security{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:12px;font-size:12px;color:var(--muted-fg)}
+
+/* Sucesso */
+.success-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:999;align-items:center;justify-content:center}
+.success-box{background:var(--card);border-radius:24px;padding:48px 40px;max-width:420px;width:90%;text-align:center}
+.success-icon{font-size:56px;margin-bottom:16px}
+.success-box h2{font-size:24px;font-weight:800;margin-bottom:8px}
+.success-box p{color:var(--muted-fg);font-size:15px;margin-bottom:24px}
+.success-btn{display:inline-block;background:var(--cobalt);color:#fff;padding:14px 32px;border-radius:10px;font-weight:700;font-size:15px;cursor:pointer;border:none;font-family:'Montserrat',sans-serif}
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<nav class="nav" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Educ<span>IA</span></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="planos.html">Planos</a>
+    </div>
+  </div>
+</nav>
+
+<section class="pay-section">
+  <div class="pay-wrapper">
+
+    <!-- Resumo do plano -->
+    <div class="plan-summary reveal">
+      <div class="plan-summary-badge" id="summaryBadge">Plano Pro</div>
+      <h3 id="summaryName">EducIA Pro</h3>
+      <div class="plan-price-big" id="summaryPrice">R$29<span>/mês</span></div>
+      <div class="plan-summary-divider"></div>
+      <ul class="plan-features-list" id="summaryFeatures">
+        <li>Vídeos completos ilimitados</li>
+        <li>Exercícios práticos com IA</li>
+        <li>Artigos e guias exclusivos</li>
+        <li>Newsletter semanal</li>
+        <li>Certificado de conclusão</li>
+      </ul>
+      <div class="test-badge">⚠️ Página de teste — nenhum pagamento será cobrado</div>
+    </div>
+
+    <!-- Formulário -->
+    <div class="pay-form reveal">
+      <h2>Finalize sua assinatura</h2>
+
+      <div class="form-section-title">Dados pessoais</div>
+      <div class="form-group">
+        <label>Nome completo</label>
+        <input type="text" id="nome" placeholder="Seu nome completo">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>E-mail</label>
+          <input type="email" id="email" placeholder="seu@email.com">
+        </div>
+        <div class="form-group">
+          <label>CPF</label>
+          <input type="text" id="cpf" placeholder="000.000.000-00" maxlength="14" oninput="maskCPF(this)">
+        </div>
+      </div>
+
+      <div class="form-section-title">Método de pagamento</div>
+      <div class="pay-methods">
+        <div class="pay-method selected" onclick="selectMethod('cartao')" id="btn-cartao">
+          <span class="pay-method-icon">💳</span> Cartão
+        </div>
+        <div class="pay-method" onclick="selectMethod('pix')" id="btn-pix">
+          <span class="pay-method-icon">⚡</span> Pix
+        </div>
+      </div>
+
+      <!-- Campos cartão -->
+      <div id="card-fields">
+        <div class="form-section-title">Dados do cartão</div>
+        <div class="form-group">
+          <label>Número do cartão</label>
+          <input type="text" id="cardNum" class="card-number" placeholder="0000 0000 0000 0000" maxlength="19" oninput="maskCard(this)">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nome no cartão</label>
+            <input type="text" id="cardName" placeholder="Como está no cartão">
+          </div>
+          <div class="form-group">
+            <label>Validade</label>
+            <input type="text" id="cardExp" placeholder="MM/AA" maxlength="5" oninput="maskExp(this)">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>CVV</label>
+          <input type="text" id="cardCvv" placeholder="000" maxlength="4" style="max-width:100px">
+        </div>
+      </div>
+
+      <!-- Campos Pix -->
+      <div id="pix-fields" style="display:none">
+        <div class="pix-icon">⚡</div>
+        <strong>Pagamento via Pix</strong>
+        <p>Após confirmar, você receberá um QR Code para realizar o pagamento. O acesso é liberado em até 5 minutos após a confirmação.</p>
+      </div>
+
+      <button class="pay-btn" onclick="finalizar()">Confirmar assinatura</button>
+      <div class="pay-security">🔒 Pagamento seguro e criptografado</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Modal de sucesso -->
+<div class="success-overlay" id="successOverlay" style="display:flex;display:none">
+  <div class="success-box">
+    <div class="success-icon">🎉</div>
+    <h2>Assinatura confirmada!</h2>
+    <p>Obrigado pela sua assinatura do <strong id="successPlan">EducIA Pro</strong>. Você receberá um e-mail com seu código de acesso em breve.</p>
+    <button class="success-btn" onclick="window.location.href='index.html'">Voltar ao site</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+<script>
+// Pega plano da URL
+const params = new URLSearchParams(window.location.search);
+const plano = params.get('plano') || 'Pro';
+
+const planos = {
+  Pro: {
+    badge: 'Plano Pro', name: 'EducIA Pro', price: 'R$29<span>/mês</span>',
+    features: ['Vídeos completos ilimitados','Exercícios práticos com IA','Artigos e guias exclusivos','Newsletter semanal','Certificado de conclusão']
+  },
+  Premium: {
+    badge: 'Plano Premium', name: 'EducIA Premium', price: 'R$69<span>/mês</span>',
+    features: ['Tudo do plano Pro','Mentorias ao vivo mensais','Comunidade exclusiva','Trilhas personalizadas','Suporte prioritário','Early access a novos conteúdos']
+  }
+};
+
+const p = planos[plano] || planos['Pro'];
+document.getElementById('summaryBadge').textContent = p.badge;
+document.getElementById('summaryName').textContent = p.name;
+document.getElementById('summaryPrice').innerHTML = p.price;
+document.getElementById('successPlan').textContent = p.name;
+const ul = document.getElementById('summaryFeatures');
+ul.innerHTML = p.features.map(f => `<li>${f}</li>`).join('');
+
+function selectMethod(m) {
+  document.querySelectorAll('.pay-method').forEach(el => el.classList.remove('selected'));
+  document.getElementById('btn-' + m).classList.add('selected');
+  document.getElementById('card-fields').style.display = m === 'cartao' ? 'block' : 'none';
+  document.getElementById('pix-fields').style.display = m === 'pix' ? 'block' : 'none';
+}
+
+function maskCPF(el) {
+  let v = el.value.replace(/\D/g,'');
+  v = v.replace(/(\d{3})(\d)/,'$1.$2');
+  v = v.replace(/(\d{3})(\d)/,'$1.$2');
+  v = v.replace(/(\d{3})(\d{1,2})$/,'$1-$2');
+  el.value = v;
+}
+
+function maskCard(el) {
+  let v = el.value.replace(/\D/g,'').substring(0,16);
+  el.value = v.replace(/(.{4})/g,'$1 ').trim();
+}
+
+function maskExp(el) {
+  let v = el.value.replace(/\D/g,'');
+  if(v.length >= 2) v = v.substring(0,2) + '/' + v.substring(2,4);
+  el.value = v;
+}
+
+function finalizar() {
+  const nome = document.getElementById('nome').value.trim();
+  const email = document.getElementById('email').value.trim();
+  if(!nome || !email) { alert('Por favor, preencha nome e e-mail.'); return; }
+  document.getElementById('successOverlay').style.display = 'flex';
+}
+</script>
+</body>
+</html>

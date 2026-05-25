@@ -18,7 +18,6 @@
 .tool-name{font-size:17px;font-weight:800}
 .tool-tag{display:inline-block;background:rgba(0,51,160,0.08);color:var(--cobalt);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:999px}
 .tool-desc{font-size:14px;color:var(--muted-fg);line-height:1.7;flex:1}
-.tool-use{margin-top:4px}
 .tool-use h4{font-size:13px;font-weight:700;margin-bottom:6px;color:var(--foreground)}
 .tool-use ul{list-style:none;display:flex;flex-direction:column;gap:4px}
 .tool-use ul li{font-size:13px;color:var(--muted-fg);padding-left:14px;position:relative}
@@ -63,40 +62,6 @@
 <section>
   <div class="container">
     <div class="tools-grid stagger reveal">
-
-      <div class="tool-card">
-        <div class="tool-icon">🤖</div>
-        <div class="tool-name">ChatGPT</div>
-        <span class="tool-tag">Escrita & Pesquisa</span>
-        <p class="tool-desc">O assistente de IA mais popular do mundo. Ideal para escrever, resumir textos, tirar dúvidas e aprender novos assuntos de forma conversacional.</p>
-        <div class="tool-use">
-          <h4>Como usar na educação:</h4>
-          <ul>
-            <li>Resumir capítulos de livros</li>
-            <li>Criar exercícios e simulados</li>
-            <li>Explicar conceitos difíceis</li>
-            <li>Revisar redações e textos</li>
-          </ul>
-        </div>
-        <a class="tool-link" href="https://chat.openai.com" target="_blank">Acessar ChatGPT ↗</a>
-      </div>
-
-      <div class="tool-card">
-        <div class="tool-icon">✨</div>
-        <div class="tool-name">Google Gemini</div>
-        <span class="tool-tag">Pesquisa & Análise</span>
-        <p class="tool-desc">IA do Google integrada com a busca. Excelente para pesquisas atualizadas, análise de documentos e integração com o Google Workspace (Docs, Sheets).</p>
-        <div class="tool-use">
-          <h4>Como usar na educação:</h4>
-          <ul>
-            <li>Pesquisar temas com fontes atuais</li>
-            <li>Analisar PDFs e documentos</li>
-            <li>Criar apresentações no Google Slides</li>
-            <li>Organizar dados no Google Sheets</li>
-          </ul>
-        </div>
-        <a class="tool-link" href="https://gemini.google.com" target="_blank">Acessar Gemini ↗</a>
-      </div>
 
       <div class="tool-card">
         <div class="tool-icon">🧠</div>
@@ -217,6 +182,91 @@
         <a class="tool-link" href="https://perplexity.ai" target="_blank">Acessar Perplexity ↗</a>
       </div>
 
+      <div class="tool-card">
+        <div class="tool-icon">🔍</div>
+        <div class="tool-name">Elicit</div>
+        <span class="tool-tag">Pesquisa Acadêmica</span>
+        <p class="tool-desc">Assistente de IA especializado em pesquisa científica. Automatiza a revisão de literatura encontrando artigos relevantes, extraindo informações-chave e organizando tudo em conceitos.</p>
+        <div class="tool-use">
+          <h4>Como usar na educação:</h4>
+          <ul>
+            <li>Fazer revisão de literatura automaticamente</li>
+            <li>Encontrar artigos científicos por pergunta</li>
+            <li>Extrair dados de PDFs e papers</li>
+            <li>Organizar referências bibliográficas</li>
+          </ul>
+        </div>
+        <a class="tool-link" href="https://elicit.com" target="_blank">Acessar Elicit ↗</a>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-icon">🔎</div>
+        <div class="tool-name">Consensus</div>
+        <span class="tool-tag">Pesquisa Científica</span>
+        <p class="tool-desc">Motor de busca com IA que extrai, agrega e sintetiza descobertas de artigos científicos. Tem o Consensus Meter — mostra visualmente o quanto a comunidade científica concorda sobre um tema.</p>
+        <div class="tool-use">
+          <h4>Como usar na educação:</h4>
+          <ul>
+            <li>Verificar consenso científico sobre temas</li>
+            <li>Encontrar artigos com embasamento real</li>
+            <li>Fazer perguntas de sim/não sobre ciência</li>
+            <li>Agilizar revisões para TCC e monografias</li>
+          </ul>
+        </div>
+        <a class="tool-link" href="https://consensus.app" target="_blank">Acessar Consensus ↗</a>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-icon">📄</div>
+        <div class="tool-name">SciSpace (Typeset)</div>
+        <span class="tool-tag">Leitura & Publicação</span>
+        <p class="tool-desc">Plataforma com IA que permite pesquisar artigos, resumir textos, criar citações e conversar diretamente com papers científicos. Mais de 270 milhões de artigos indexados.</p>
+        <div class="tool-use">
+          <h4>Como usar na educação:</h4>
+          <ul>
+            <li>Conversar com PDFs de artigos científicos</li>
+            <li>Simplificar textos acadêmicos complexos</li>
+            <li>Gerar citações automaticamente</li>
+            <li>Formatar trabalhos para publicação</li>
+          </ul>
+        </div>
+        <a class="tool-link" href="https://typeset.io" target="_blank">Acessar SciSpace ↗</a>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-icon">📓</div>
+        <div class="tool-name">NotebookLM (Google)</div>
+        <span class="tool-tag">Estudo & Organização</span>
+        <p class="tool-desc">Ferramenta de IA gratuita do Google que funciona exclusivamente com os materiais que você envia — gerando resumos, guias de estudo e quizzes com citações diretas das suas fontes.</p>
+        <div class="tool-use">
+          <h4>Como usar na educação:</h4>
+          <ul>
+            <li>Carregar PDFs de aulas e conversar com eles</li>
+            <li>Gerar resumos e guias de estudo</li>
+            <li>Criar quizzes a partir das anotações</li>
+            <li>Organizar múltiplas fontes num só lugar</li>
+          </ul>
+        </div>
+        <a class="tool-link" href="https://notebooklm.google" target="_blank">Acessar NotebookLM ↗</a>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-icon">⚡</div>
+        <div class="tool-name">Mindgrasp AI</div>
+        <span class="tool-tag">Estudo Inteligente</span>
+        <p class="tool-desc">Plataforma que transforma aulas, PDFs, vídeos e leituras em materiais de estudo completos — resumos, notas, flashcards e quizzes interativos. Usada por mais de 5 milhões de estudantes.</p>
+        <div class="tool-use">
+          <h4>Como usar na educação:</h4>
+          <ul>
+            <li>Transformar gravações de aula em notas</li>
+            <li>Criar flashcards e quizzes automáticos</li>
+            <li>Tirar dúvidas com tutor de IA 24h</li>
+            <li>Resumir livros e artigos longos</li>
+          </ul>
+        </div>
+        <a class="tool-link" href="https://mindgrasp.ai" target="_blank">Acessar Mindgrasp ↗</a>
+      </div>
+
     </div>
   </div>
 </section>
@@ -234,11 +284,9 @@
 
 <script src="script.js"></script>
 <script>
-// Verifica acesso
 if (sessionStorage.getItem('educia_access') !== 'granted') {
   window.location.href = 'acesso.html';
 }
-
 function sair() {
   sessionStorage.removeItem('educia_access');
   window.location.href = 'index.html';

@@ -94,13 +94,39 @@
   </div>
 </nav>
 
-<div class="page-hero">
-  <div class="page-hero-content container">
+<div class="page-hero" style="position:relative;overflow:hidden">
+  <canvas id="particleCanvas" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0"></canvas>
+  <div class="page-hero-content container" style="position:relative;z-index:1">
     <span class="eyebrow">Assinatura</span>
     <h1>Escolha seu plano</h1>
     <p>Acesse conteúdos exclusivos sobre como usar IA de forma consciente, produtiva e ética.</p>
   </div>
 </div>
+<script>
+(function(){
+  const canvas = document.getElementById("particleCanvas");
+  const ctx = canvas.getContext("2d");
+  let particles = [];
+  let W, H;
+  function resize(){ W = canvas.width = canvas.offsetWidth; H = canvas.height = canvas.offsetHeight; }
+  resize();
+  window.addEventListener("resize", resize);
+  function rp(){ return { x: Math.random()*W, y: Math.random()*H, r: Math.random()*2+1, dx: (Math.random()-.5)*.5, dy: (Math.random()-.5)*.5, alpha: Math.random()*.5+.1 }; }
+  for(let i=0;i<80;i++) particles.push(rp());
+  function drawLines(){
+    for(let i=0;i<particles.length;i++) for(let j=i+1;j<particles.length;j++){
+      const dx=particles[i].x-particles[j].x, dy=particles[i].y-particles[j].y, d=Math.sqrt(dx*dx+dy*dy);
+      if(d<120){ ctx.beginPath(); ctx.strokeStyle="rgba(0,51,160,"+(0.15*(1-d/120))+")"; ctx.lineWidth=.8; ctx.moveTo(particles[i].x,particles[i].y); ctx.lineTo(particles[j].x,particles[j].y); ctx.stroke(); }
+    }
+  }
+  function animate(){
+    ctx.clearRect(0,0,W,H); drawLines();
+    particles.forEach(p=>{ p.x+=p.dx; p.y+=p.dy; if(p.x<0||p.x>W) p.dx*=-1; if(p.y<0||p.y>H) p.dy*=-1; ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fillStyle="rgba(0,51,160,"+p.alpha+")"; ctx.fill(); });
+    requestAnimationFrame(animate);
+  }
+  animate();
+})();
+<\/script>
 
 <!-- Planos -->
 <section class="plans-section">
@@ -137,7 +163,7 @@
           <li>Certificado de conclusão</li>
           <li class="off">Mentorias ao vivo</li>
         </ul>
-        <button class="plan-cta primary" onclick="selectPlan('Pro')">Assinar Pro</button>
+        <button class="plan-cta primary" onclick="window.location.href='pagamento.html?plano=Pro'">Assinar Pro</button>
       </div>
 
       <div class="plan-card">
@@ -153,7 +179,7 @@
           <li>Suporte prioritário</li>
           <li>Early access a novos conteúdos</li>
         </ul>
-        <button class="plan-cta outline" onclick="selectPlan('Premium')">Assinar Premium</button>
+        <button class="plan-cta outline" onclick="window.location.href='pagamento.html?plano=Premium'">Assinar Premium</button>
       </div>
 
     </div>
