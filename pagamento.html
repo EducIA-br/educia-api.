@@ -115,43 +115,10 @@
       </div>
 
       <div class="form-section-title">Método de pagamento</div>
-      <div class="pay-methods">
-        <div class="pay-method selected" onclick="selectMethod('cartao')" id="btn-cartao">
-          <span class="pay-method-icon">💳</span> Cartão
-        </div>
-        <div class="pay-method" onclick="selectMethod('pix')" id="btn-pix">
-          <span class="pay-method-icon">⚡</span> Pix
-        </div>
-      </div>
-
-      <!-- Campos cartão -->
-      <div id="card-fields">
-        <div class="form-section-title">Dados do cartão</div>
-        <div class="form-group">
-          <label>Número do cartão</label>
-          <input type="text" id="cardNum" class="card-number" placeholder="0000 0000 0000 0000" maxlength="19" oninput="maskCard(this)">
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label>Nome no cartão</label>
-            <input type="text" id="cardName" placeholder="Como está no cartão">
-          </div>
-          <div class="form-group">
-            <label>Validade</label>
-            <input type="text" id="cardExp" placeholder="MM/AA" maxlength="5" oninput="maskExp(this)">
-          </div>
-        </div>
-        <div class="form-group">
-          <label>CVV</label>
-          <input type="text" id="cardCvv" placeholder="000" maxlength="4" style="max-width:100px">
-        </div>
-      </div>
-
-      <!-- Campos Pix -->
-      <div id="pix-fields" style="display:none">
-        <div class="pix-icon">⚡</div>
-        <strong>Pagamento via Pix</strong>
-        <p>Após confirmar, você receberá um QR Code para realizar o pagamento. O acesso é liberado em até 5 minutos após a confirmação.</p>
+      <div style="background:var(--muted);border-radius:12px;padding:20px;text-align:center;margin-bottom:8px">
+        <div style="font-size:36px">⚡</div>
+        <strong style="font-size:15px">Pagamento via Pix</strong>
+        <p style="font-size:13px;color:var(--muted-fg);margin-top:8px">Após confirmar, você será redirecionado para o Mercado Pago para realizar o pagamento. O acesso é liberado em até 5 minutos após a confirmação.</p>
       </div>
 
       <button class="pay-btn" onclick="finalizar()">Confirmar assinatura</button>
@@ -206,13 +173,6 @@ document.getElementById('successPlan').textContent = p.name;
 const ul = document.getElementById('summaryFeatures');
 ul.innerHTML = p.features.map(f => `<li>${f}</li>`).join('');
 
-function selectMethod(m) {
-  document.querySelectorAll('.pay-method').forEach(el => el.classList.remove('selected'));
-  document.getElementById('btn-' + m).classList.add('selected');
-  document.getElementById('card-fields').style.display = m === 'cartao' ? 'block' : 'none';
-  document.getElementById('pix-fields').style.display = m === 'pix' ? 'block' : 'none';
-}
-
 function maskCPF(el) {
   let v = el.value.replace(/\D/g,'');
   v = v.replace(/(\d{3})(\d)/,'$1.$2');
@@ -241,24 +201,10 @@ function finalizar() {
   const nome = document.getElementById('nome').value.trim();
   const email = document.getElementById('email').value.trim();
   const cpf = document.getElementById('cpf').value.trim();
-  const metodo = document.querySelector('.pay-method.selected')?.id?.replace('btn-','') || 'cartao';
 
-  // Validação dados pessoais
   if (!nome) { alertField('nome', 'Por favor, preencha seu nome completo.'); return; }
   if (!email || !email.includes('@')) { alertField('email', 'Por favor, preencha um e-mail válido.'); return; }
   if (!cpf || cpf.length < 14) { alertField('cpf', 'Por favor, preencha seu CPF completo.'); return; }
-
-  // Validação cartão
-  if (metodo === 'cartao') {
-    const cardNum = document.getElementById('cardNum').value.trim();
-    const cardName = document.getElementById('cardName').value.trim();
-    const cardExp = document.getElementById('cardExp').value.trim();
-    const cardCvv = document.getElementById('cardCvv').value.trim();
-    if (!cardNum || cardNum.replace(/\s/g,'').length < 16) { alertField('cardNum', 'Por favor, preencha o número do cartão.'); return; }
-    if (!cardName) { alertField('cardName', 'Por favor, preencha o nome como está no cartão.'); return; }
-    if (!cardExp || cardExp.length < 5) { alertField('cardExp', 'Por favor, preencha a validade do cartão.'); return; }
-    if (!cardCvv || cardCvv.length < 3) { alertField('cardCvv', 'Por favor, preencha o CVV.'); return; }
-  }
 
   const plano = new URLSearchParams(window.location.search).get('plano') || 'Pro';
   const link = MP_LINKS[plano] || MP_LINKS['Pro'];
@@ -277,3 +223,4 @@ function alertField(fieldId, msg) {
 </script>
 </body>
 </html>
+
