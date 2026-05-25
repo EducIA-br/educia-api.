@@ -5,16 +5,13 @@
 <title>EducIA — Planos</title>
 <link rel="stylesheet" href="style.css">
 <style>
-/* ── Planos ── */
 .plans-section{padding:96px 0 64px;background:var(--bg)}
 .plans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
 @media(max-width:900px){.plans-grid{grid-template-columns:1fr;max-width:420px;margin-left:auto;margin-right:auto}}
-
 .plan-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:36px 32px;position:relative;transition:all .35s;display:flex;flex-direction:column}
 .plan-card:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(0,51,160,0.1)}
 .plan-card.featured{border:2px solid var(--cobalt);box-shadow:0 8px 40px rgba(0,51,160,0.15)}
 .plan-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--cobalt);color:#fff;font-size:11px;font-weight:700;letter-spacing:.1em;padding:5px 16px;border-radius:999px;white-space:nowrap;text-transform:uppercase}
-
 .plan-name{font-size:13px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--cobalt);margin-bottom:8px}
 .plan-price{font-size:42px;font-weight:800;letter-spacing:-0.03em;line-height:1}
 .plan-price span{font-size:16px;font-weight:500;color:var(--muted-fg)}
@@ -30,25 +27,19 @@
 .plan-cta.primary:hover{background:var(--cobalt-light);box-shadow:0 6px 20px rgba(0,51,160,0.35)}
 .plan-cta.outline{background:transparent;color:var(--cobalt);border:1.5px solid var(--cobalt)}
 .plan-cta.outline:hover{background:rgba(0,51,160,0.06)}
-
-/* ── Chat Section ── */
 .chat-section{padding:64px 0 96px;background:var(--muted)}
 .chat-wrapper{max-width:780px;margin:0 auto}
 .chat-intro{text-align:center;margin-bottom:40px}
 .chat-intro p{margin-top:12px;color:var(--muted-fg)}
-
 .chat-box{background:var(--card);border:1px solid var(--border);border-radius:20px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.06)}
 .chat-header{background:var(--cobalt);padding:18px 24px;display:flex;align-items:center;gap:12px}
 .chat-avatar{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
 .chat-header-info h4{color:#fff;font-size:15px;font-weight:700;margin:0}
 .chat-header-info p{color:rgba(255,255,255,0.65);font-size:12px;margin:0}
 .chat-status{width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 0 2px rgba(74,222,128,0.3);margin-left:auto;flex-shrink:0}
-
 .chat-messages{height:380px;overflow-y:auto;padding:24px;display:flex;flex-direction:column;gap:16px;scroll-behavior:smooth}
 .chat-messages::-webkit-scrollbar{width:4px}
-.chat-messages::-webkit-scrollbar-track{background:transparent}
 .chat-messages::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
-
 .msg{display:flex;gap:10px;max-width:85%}
 .msg.user{align-self:flex-end;flex-direction:row-reverse}
 .msg-avatar{width:30px;height:30px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:14px;margin-top:2px}
@@ -57,19 +48,16 @@
 .msg-bubble{padding:12px 16px;border-radius:16px;font-size:14px;line-height:1.6}
 .msg.bot .msg-bubble{background:var(--muted);border-bottom-left-radius:4px}
 .msg.user .msg-bubble{background:var(--cobalt);color:#fff;border-bottom-right-radius:4px}
-
 .typing{display:flex;gap:5px;align-items:center;padding:14px 16px}
 .typing span{width:7px;height:7px;border-radius:50%;background:var(--muted-fg);opacity:0.5;animation:typingBounce 1.2s infinite}
 .typing span:nth-child(2){animation-delay:.2s}
 .typing span:nth-child(3){animation-delay:.4s}
 @keyframes typingBounce{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-6px);opacity:1}}
-
 .chat-suggestions{padding:0 24px 16px;display:flex;flex-wrap:wrap;gap:8px}
 .suggestion-btn{background:transparent;border:1px solid var(--border);border-radius:999px;padding:7px 14px;font-size:13px;font-weight:500;cursor:pointer;transition:all .2s;font-family:'Montserrat',sans-serif;color:var(--foreground)}
-.suggestion-btn:hover{border-color:var(--cobalt);color:var(--cobalt);background:rgba(0,51,160,0.04)}
-
+.suggestion-btn:hover{border-color:var(--cobalt);color:var(--cobalt)}
 .chat-input-row{display:flex;gap:0;border-top:1px solid var(--border);padding:16px}
-.chat-input{flex:1;border:1px solid var(--border);border-radius:10px 0 0 10px;padding:12px 16px;font-size:14px;font-family:'Montserrat',sans-serif;outline:none;transition:border-color .2s;resize:none;background:var(--bg)}
+.chat-input{flex:1;border:1px solid var(--border);border-radius:10px 0 0 10px;padding:12px 16px;font-size:14px;font-family:'Montserrat',sans-serif;outline:none;transition:border-color .2s;resize:none;background:var(--bg);color:var(--foreground)}
 .chat-input:focus{border-color:var(--cobalt)}
 .chat-send{background:var(--cobalt);color:#fff;border:none;border-radius:0 10px 10px 0;padding:12px 20px;cursor:pointer;font-size:18px;transition:background .2s;flex-shrink:0}
 .chat-send:hover{background:var(--cobalt-light)}
@@ -87,6 +75,8 @@
       <a href="pilares.html">Pilares</a>
       <a href="debate.html">O Debate</a>
       <a href="pensadores.html">Pensadores</a>
+      <a href="planos.html">Planos</a>
+      <a href="acesso.html">🔒 Assinantes</a>
     </div>
     <div class="nav-right">
       <a href="videos.html" class="nav-video-btn"><span class="play-icon">▶</span> Vídeo</a>
@@ -94,6 +84,7 @@
   </div>
 </nav>
 
+<!-- Hero com partículas -->
 <div class="page-hero" style="position:relative;overflow:hidden">
   <canvas id="particleCanvas" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0"></canvas>
   <div class="page-hero-content container" style="position:relative;z-index:1">
@@ -102,31 +93,6 @@
     <p>Acesse conteúdos exclusivos sobre como usar IA de forma consciente, produtiva e ética.</p>
   </div>
 </div>
-<script>
-(function(){
-  const canvas = document.getElementById("particleCanvas");
-  const ctx = canvas.getContext("2d");
-  let particles = [];
-  let W, H;
-  function resize(){ W = canvas.width = canvas.offsetWidth; H = canvas.height = canvas.offsetHeight; }
-  resize();
-  window.addEventListener("resize", resize);
-  function rp(){ return { x: Math.random()*W, y: Math.random()*H, r: Math.random()*2+1, dx: (Math.random()-.5)*.5, dy: (Math.random()-.5)*.5, alpha: Math.random()*.5+.1 }; }
-  for(let i=0;i<80;i++) particles.push(rp());
-  function drawLines(){
-    for(let i=0;i<particles.length;i++) for(let j=i+1;j<particles.length;j++){
-      const dx=particles[i].x-particles[j].x, dy=particles[i].y-particles[j].y, d=Math.sqrt(dx*dx+dy*dy);
-      if(d<120){ ctx.beginPath(); ctx.strokeStyle="rgba(0,51,160,"+(0.15*(1-d/120))+")"; ctx.lineWidth=.8; ctx.moveTo(particles[i].x,particles[i].y); ctx.lineTo(particles[j].x,particles[j].y); ctx.stroke(); }
-    }
-  }
-  function animate(){
-    ctx.clearRect(0,0,W,H); drawLines();
-    particles.forEach(p=>{ p.x+=p.dx; p.y+=p.dy; if(p.x<0||p.x>W) p.dx*=-1; if(p.y<0||p.y>H) p.dy*=-1; ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fillStyle="rgba(0,51,160,"+p.alpha+")"; ctx.fill(); });
-    requestAnimationFrame(animate);
-  }
-  animate();
-})();
-</script>
 
 <!-- Planos -->
 <section class="plans-section">
@@ -146,8 +112,8 @@
           <li class="off">Exercícios práticos com IA</li>
           <li class="off">Certificado de conclusão</li>
         </ul>
-        <p style="font-size:13px;color:var(--muted-fg);margin-top:8px">💬 Tem dúvidas? <a href="#" onclick="scrollToChat();return false;" style="color:var(--cobalt);font-weight:600">Pergunte ao nosso bot</a></p>
-        <button class="plan-cta outline" onclick="selectPlan('Gratuito')">Começar grátis</button>
+        <p style="font-size:13px;color:var(--muted-fg);margin-top:12px">💬 Tem dúvidas? <a href="#" onclick="scrollToChat();return false;" style="color:var(--cobalt);font-weight:600">Pergunte ao nosso bot</a></p>
+        <button class="plan-cta outline" onclick="scrollToChat()">Começar grátis</button>
       </div>
 
       <div class="plan-card featured">
@@ -162,7 +128,7 @@
           <li>Artigos e guias exclusivos</li>
           <li>Certificado de conclusão</li>
         </ul>
-        <p style="font-size:13px;color:var(--muted-fg);margin-top:8px">💬 Tem dúvidas? <a href="#" onclick="scrollToChat();return false;" style="color:var(--cobalt);font-weight:600">Pergunte ao nosso bot</a></p>
+        <p style="font-size:13px;color:var(--muted-fg);margin-top:12px">💬 Tem dúvidas? <a href="#" onclick="scrollToChat();return false;" style="color:var(--cobalt);font-weight:600">Pergunte ao nosso bot</a></p>
         <button class="plan-cta primary" onclick="confirmarPlano('Pro', 'R$29/mês')">Assinar Pro</button>
       </div>
 
@@ -177,7 +143,7 @@
           <li>Comunidade exclusiva</li>
           <li>Suporte prioritário</li>
         </ul>
-        <p style="font-size:13px;color:var(--muted-fg);margin-top:8px">💬 Tem dúvidas? <a href="#" onclick="scrollToChat();return false;" style="color:var(--cobalt);font-weight:600">Pergunte ao nosso bot</a></p>
+        <p style="font-size:13px;color:var(--muted-fg);margin-top:12px">💬 Tem dúvidas? <a href="#" onclick="scrollToChat();return false;" style="color:var(--cobalt);font-weight:600">Pergunte ao nosso bot</a></p>
         <button class="plan-cta outline" onclick="confirmarPlano('Premium', 'R$69/mês')">Assinar Premium</button>
       </div>
 
@@ -193,7 +159,6 @@
       <h2>Tem dúvidas? Fale com nosso bot</h2>
       <p>Ele vai te ajudar a entender cada plano e encontrar o ideal para você.</p>
     </div>
-
     <div class="chat-box reveal">
       <div class="chat-header">
         <div class="chat-avatar">🤖</div>
@@ -203,16 +168,13 @@
         </div>
         <div class="chat-status"></div>
       </div>
-
       <div class="chat-messages" id="chatMessages"></div>
-
       <div class="chat-suggestions" id="chatSuggestions">
         <button class="suggestion-btn" onclick="sendSuggestion(this)">Qual plano é ideal para mim?</button>
         <button class="suggestion-btn" onclick="sendSuggestion(this)">O que tem no plano Pro?</button>
         <button class="suggestion-btn" onclick="sendSuggestion(this)">Tem período de teste?</button>
         <button class="suggestion-btn" onclick="sendSuggestion(this)">Como cancelar a assinatura?</button>
       </div>
-
       <div class="chat-input-row">
         <textarea class="chat-input" id="chatInput" placeholder="Digite sua mensagem..." rows="1"
           onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendMessage()}"></textarea>
@@ -221,17 +183,6 @@
     </div>
   </div>
 </section>
-
-<footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div><a href="index.html" class="logo" style="color:#fff">Educ<span style="color:var(--cobalt-light)">IA</span></a><p>Inteligência artificial na educação: uma questão que define o futuro da humanidade.</p></div>
-      <div><h4>Navegação</h4><a href="sobre.html">O que é IA</a><br><a href="pilares.html">Pilares</a><br><a href="debate.html">O Debate</a><br><a href="pensadores.html">Pensadores</a><br><a href="videos.html">Vídeo</a></div>
-      <div><h4>Planos</h4><a href="planos.html">Ver todos os planos</a><br><a href="#">Termos de uso</a><br><a href="#">Política de privacidade</a></div>
-    </div>
-    <div class="footer-bottom">© 2026 EducIA — Projeto editorial sobre IA e educação.</div>
-  </div>
-</footer>
 
 <!-- Modal de confirmação -->
 <div id="confirmModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:999;align-items:center;justify-content:center">
@@ -248,13 +199,46 @@
   </div>
 </div>
 
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div><a href="index.html" class="logo" style="color:#fff">Educ<span style="color:var(--cobalt-light)">IA</span></a><p>Inteligência artificial na educação: uma questão que define o futuro da humanidade.</p></div>
+      <div><h4>Navegação</h4><a href="sobre.html">O que é IA</a><br><a href="pilares.html">Pilares</a><br><a href="debate.html">O Debate</a><br><a href="pensadores.html">Pensadores</a><br><a href="videos.html">Vídeo</a></div>
+      <div><h4>Assinantes</h4><a href="planos.html">Ver planos</a><br><a href="acesso.html">Área do assinante</a></div>
+    </div>
+    <div class="footer-bottom">© 2026 EducIA — Projeto editorial sobre IA e educação.</div>
+  </div>
+</footer>
+
 <script src="script.js"></script>
 <script>
-// ── Chat Bot ──
-// Após fazer o deploy no Vercel, substitua pela sua URL real:
-// ex: 'https://educia-api.vercel.app/api/chat'
-const API_URL = 'https://educia-api-9iq5.vercel.app/api/chat';
+// Partículas
+(function(){
+  const canvas = document.getElementById('particleCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let particles = [], W, H;
+  function resize(){ W = canvas.width = canvas.offsetWidth; H = canvas.height = canvas.offsetHeight; }
+  resize();
+  window.addEventListener('resize', resize);
+  function rp(){ return { x:Math.random()*W, y:Math.random()*H, r:Math.random()*2+1, dx:(Math.random()-.5)*.5, dy:(Math.random()-.5)*.5, alpha:Math.random()*.5+.1 }; }
+  for(let i=0;i<80;i++) particles.push(rp());
+  function drawLines(){
+    for(let i=0;i<particles.length;i++) for(let j=i+1;j<particles.length;j++){
+      const dx=particles[i].x-particles[j].x, dy=particles[i].y-particles[j].y, d=Math.sqrt(dx*dx+dy*dy);
+      if(d<120){ ctx.beginPath(); ctx.strokeStyle='rgba(0,51,160,'+(0.15*(1-d/120))+')'; ctx.lineWidth=.8; ctx.moveTo(particles[i].x,particles[i].y); ctx.lineTo(particles[j].x,particles[j].y); ctx.stroke(); }
+    }
+  }
+  function animate(){
+    ctx.clearRect(0,0,W,H); drawLines();
+    particles.forEach(p=>{ p.x+=p.dx; p.y+=p.dy; if(p.x<0||p.x>W) p.dx*=-1; if(p.y<0||p.y>H) p.dy*=-1; ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fillStyle='rgba(0,51,160,'+p.alpha+')'; ctx.fill(); });
+    requestAnimationFrame(animate);
+  }
+  animate();
+})();
 
+// Chat Bot
+const API_URL = 'https://educia-api-9iq5.vercel.app/api/chat';
 const SYSTEM_PROMPT = `Você é o assistente virtual do EducIA, um site de conteúdo sobre como usar Inteligência Artificial de forma correta, consciente e produtiva na educação e no trabalho.
 
 Seu papel é ajudar os visitantes a entenderem os planos de assinatura e escolherem o ideal para eles. Seja simpático, direto e use linguagem informal mas profissional (use "você", não "tu").
@@ -267,14 +251,15 @@ PLANOS DISPONÍVEIS:
 Quando o usuário demonstrar interesse em assinar, incentive-o a clicar no botão do plano escolhido na página. Responda sempre em português brasileiro. Seja conciso — respostas de até 3-4 parágrafos curtos.
 
 RECLAMAÇÕES E SUPORTE:
-Se o usuário fizer uma reclamação, expressar insatisfação ou precisar de suporte, responda com empatia, peça desculpas pelo inconveniente e oriente-o a entrar em contato com a equipe pelo e-mail equipe.educia@gmail.com, dizendo que eles vão resolver o problema o mais rápido possível.`;
+Se o usuário fizer uma reclamação, responda com empatia e oriente-o a contatar a equipe pelo e-mail equipe.educia@gmail.com.`;
 
 let history = [];
 
 function addMessage(role, text) {
   const msgs = document.getElementById('chatMessages');
+  if (!msgs) return;
   const div = document.createElement('div');
-  div.className = `msg ${role}`;
+  div.className = 'msg ' + role;
   const avatar = document.createElement('div');
   avatar.className = 'msg-avatar';
   avatar.textContent = role === 'bot' ? '🤖' : '👤';
@@ -289,10 +274,11 @@ function addMessage(role, text) {
 
 function addTyping() {
   const msgs = document.getElementById('chatMessages');
+  if (!msgs) return;
   const div = document.createElement('div');
   div.className = 'msg bot';
   div.id = 'typing-indicator';
-  div.innerHTML = `<div class="msg-avatar">🤖</div><div class="msg-bubble"><div class="typing"><span></span><span></span><span></span></div></div>`;
+  div.innerHTML = '<div class="msg-avatar">🤖</div><div class="msg-bubble"><div class="typing"><span></span><span></span><span></span></div></div>';
   msgs.appendChild(div);
   msgs.scrollTop = msgs.scrollHeight;
 }
@@ -304,19 +290,18 @@ function removeTyping() {
 
 async function sendMessage() {
   const input = document.getElementById('chatInput');
+  if (!input) return;
   const text = input.value.trim();
   if (!text) return;
-
   input.value = '';
   input.style.height = 'auto';
-  document.getElementById('sendBtn').disabled = true;
-  document.getElementById('chatSuggestions').style.display = 'none';
-
+  const sendBtn = document.getElementById('sendBtn');
+  if (sendBtn) sendBtn.disabled = true;
+  const suggestions = document.getElementById('chatSuggestions');
+  if (suggestions) suggestions.style.display = 'none';
   addMessage('user', text);
   history.push({ role: 'user', content: text });
-
   addTyping();
-
   try {
     const res = await fetch(API_URL, {
       method: 'POST',
@@ -332,23 +317,54 @@ async function sendMessage() {
     removeTyping();
     addMessage('bot', 'Ops, tive um problema de conexão. Tente novamente em instantes!');
   }
-
-  document.getElementById('sendBtn').disabled = false;
-  document.getElementById('chatInput').focus();
+  if (sendBtn) sendBtn.disabled = false;
+  if (input) input.focus();
 }
 
 function sendSuggestion(btn) {
-  document.getElementById('chatInput').value = btn.textContent;
+  const input = document.getElementById('chatInput');
+  if (input) input.value = btn.textContent;
   sendMessage();
 }
 
-function selectPlan(plan) {
-  document.getElementById('chatInput').value = `Quero assinar o plano ${plan}. O que preciso fazer?`;
-  document.querySelector('.chat-section').scrollIntoView({ behavior: 'smooth' });
-  setTimeout(sendMessage, 600);
+function scrollToChat() {
+  const chatSection = document.querySelector('.chat-section');
+  if (chatSection) chatSection.scrollIntoView({ behavior: 'smooth' });
+  setTimeout(() => { const input = document.getElementById('chatInput'); if(input) input.focus(); }, 600);
 }
 
-// Mensagem inicial do bot
+// Modal
+let _planoAtual = '';
+function confirmarPlano(plano, preco) {
+  _planoAtual = plano;
+  document.getElementById('modalPlanName').textContent = 'Plano ' + plano;
+  document.getElementById('modalPlanPrice').textContent = preco;
+  document.getElementById('confirmModal').style.display = 'flex';
+}
+function irParaPagamento() {
+  document.getElementById('confirmModal').style.display = 'none';
+  window.location.href = 'pagamento.html?plano=' + _planoAtual;
+}
+function irParaBot() {
+  document.getElementById('confirmModal').style.display = 'none';
+  scrollToChat();
+  setTimeout(() => {
+    const input = document.getElementById('chatInput');
+    if (input) { input.value = 'Quero saber mais sobre o plano ' + _planoAtual + ' antes de assinar.'; sendMessage(); }
+  }, 800);
+}
+function fecharModal() {
+  document.getElementById('confirmModal').style.display = 'none';
+}
+
+// Auto-resize textarea
+const chatInputEl = document.getElementById('chatInput');
+if (chatInputEl) chatInputEl.addEventListener('input', function() {
+  this.style.height = 'auto';
+  this.style.height = Math.min(this.scrollHeight, 100) + 'px';
+});
+
+// Mensagem inicial
 window.addEventListener('load', () => {
   setTimeout(() => {
     addTyping();
@@ -357,45 +373,6 @@ window.addEventListener('load', () => {
       addMessage('bot', 'Olá! 👋 Sou o assistente do EducIA. Posso te ajudar a entender nossos planos e encontrar o ideal para você.\n\nTemos opções desde o gratuito até o Premium com mentorias ao vivo. Pode me perguntar qualquer coisa!');
     }, 900);
   }, 500);
-});
-
-
-let _planoAtual = '';
-
-function confirmarPlano(plano, preco) {
-  _planoAtual = plano;
-  document.getElementById('modalPlanName').textContent = 'Plano ' + plano;
-  document.getElementById('modalPlanPrice').textContent = preco;
-  document.getElementById('confirmModal').style.display = 'flex';
-}
-
-function irParaPagamento() {
-  document.getElementById('confirmModal').style.display = 'none';
-  window.location.href = 'pagamento.html?plano=' + _planoAtual;
-}
-
-function irParaBot() {
-  document.getElementById('confirmModal').style.display = 'none';
-  scrollToChat();
-  setTimeout(() => {
-    document.getElementById('chatInput').value = 'Quero saber mais sobre o plano ' + _planoAtual + ' antes de assinar.';
-    sendMessage();
-  }, 600);
-}
-
-function fecharModal() {
-  document.getElementById('confirmModal').style.display = 'none';
-}
-
-function scrollToChat() {
-  document.querySelector('.chat-section').scrollIntoView({ behavior: 'smooth' });
-  setTimeout(() => document.getElementById('chatInput').focus(), 600);
-}
-
-// Auto-resize textarea
-document.getElementById('chatInput').addEventListener('input', function() {
-  this.style.height = 'auto';
-  this.style.height = Math.min(this.scrollHeight, 100) + 'px';
 });
 </script>
 </body>
