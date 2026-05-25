@@ -233,6 +233,21 @@
   </div>
 </footer>
 
+<!-- Modal de confirmação -->
+<div id="confirmModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:999;align-items:center;justify-content:center">
+  <div style="background:var(--card);border-radius:24px;padding:40px 36px;max-width:420px;width:90%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.2)">
+    <div style="font-size:48px;margin-bottom:12px">🤔</div>
+    <h2 style="font-size:22px;font-weight:800;margin-bottom:8px">Tem certeza?</h2>
+    <p style="color:var(--muted-fg);font-size:15px;margin-bottom:8px">Você está prestes a assinar o <strong id="modalPlanName">Plano Pro</strong> por <strong id="modalPlanPrice">R$29/mês</strong>.</p>
+    <p style="color:var(--muted-fg);font-size:14px;margin-bottom:28px">Se ainda tiver dúvidas, nosso bot pode te ajudar a escolher o plano ideal!</p>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <button onclick="irParaPagamento()" style="padding:14px;background:var(--cobalt);color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit">✅ Sim, quero assinar!</button>
+      <button onclick="irParaBot()" style="padding:14px;background:transparent;color:var(--cobalt);border:1.5px solid var(--cobalt);border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit">💬 Tirar dúvidas com o bot</button>
+      <button onclick="fecharModal()" style="padding:10px;background:transparent;color:var(--muted-fg);border:none;font-size:13px;cursor:pointer;font-family:inherit">Cancelar</button>
+    </div>
+  </div>
+</div>
+
 <script src="script.js"></script>
 <script>
 // ── Chat Bot ──
@@ -383,20 +398,5 @@ document.getElementById('chatInput').addEventListener('input', function() {
   this.style.height = Math.min(this.scrollHeight, 100) + 'px';
 });
 </script>
-
-<!-- Modal de confirmação -->
-<div id="confirmModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:999;align-items:center;justify-content:center">
-  <div style="background:var(--card);border-radius:24px;padding:40px 36px;max-width:420px;width:90%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.2)">
-    <div style="font-size:48px;margin-bottom:12px">🤔</div>
-    <h2 style="font-size:22px;font-weight:800;margin-bottom:8px">Tem certeza?</h2>
-    <p style="color:var(--muted-fg);font-size:15px;margin-bottom:8px">Você está prestes a assinar o <strong id="modalPlanName">Plano Pro</strong> por <strong id="modalPlanPrice">R$29/mês</strong>.</p>
-    <p style="color:var(--muted-fg);font-size:14px;margin-bottom:28px">Se ainda tiver dúvidas, nosso bot pode te ajudar a escolher o plano ideal!</p>
-    <div style="display:flex;flex-direction:column;gap:10px">
-      <button onclick="irParaPagamento()" style="padding:14px;background:var(--cobalt);color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit">✅ Sim, quero assinar!</button>
-      <button onclick="irParaBot()" style="padding:14px;background:transparent;color:var(--cobalt);border:1.5px solid var(--cobalt);border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit">💬 Tirar dúvidas com o bot</button>
-      <button onclick="fecharModal()" style="padding:10px;background:transparent;color:var(--muted-fg);border:none;font-size:13px;cursor:pointer;font-family:inherit">Cancelar</button>
-    </div>
-  </div>
-</div>
 </body>
 </html>
