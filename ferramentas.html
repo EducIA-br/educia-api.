@@ -5,28 +5,49 @@
 <title>EducIA — Ferramentas de IA</title>
 <link rel="stylesheet" href="style.css">
 <style>
-.tools-hero{padding:96px 0 48px;text-align:center}
-.tools-hero p{margin-top:12px;color:var(--muted-fg);max-width:560px;margin-left:auto;margin-right:auto}
+.tools-hero{padding:96px 0 48px;text-align:center;background:#0A0E1A}
+.tools-hero p{margin-top:12px;color:rgba(255,255,255,0.55);max-width:560px;margin-left:auto;margin-right:auto}
 
 .tools-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding-bottom:96px}
 @media(max-width:900px){.tools-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:580px){.tools-grid{grid-template-columns:1fr}}
 
-.tool-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:28px;transition:all .3s;display:flex;flex-direction:column;gap:12px}
+.tool-card{background:#131929;border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:28px;transition:all .3s;display:flex;flex-direction:column;gap:12px}
 .tool-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,0.08)}
 .tool-icon{font-size:36px}
 .tool-name{font-size:17px;font-weight:800}
 .tool-tag{display:inline-block;background:rgba(0,51,160,0.08);color:var(--cobalt);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:999px}
-.tool-desc{font-size:14px;color:var(--muted-fg);line-height:1.7;flex:1}
-.tool-use h4{font-size:13px;font-weight:700;margin-bottom:6px;color:var(--foreground)}
+.tool-desc{font-size:14px;color:rgba(255,255,255,0.55);line-height:1.7;flex:1}
+.tool-use h4{font-size:13px;font-weight:700;margin-bottom:6px;color:#E8EDF5}
 .tool-use ul{list-style:none;display:flex;flex-direction:column;gap:4px}
-.tool-use ul li{font-size:13px;color:var(--muted-fg);padding-left:14px;position:relative}
+.tool-use ul li{font-size:13px;color:rgba(255,255,255,0.5);padding-left:14px;position:relative}
 .tool-use ul li::before{content:"→";position:absolute;left:0;color:var(--cobalt)}
 .tool-link{margin-top:8px;display:inline-flex;align-items:center;gap:6px;color:var(--cobalt);font-size:13px;font-weight:700;text-decoration:none}
 .tool-link:hover{text-decoration:underline}
 
-.logout-bar{background:var(--muted);border-bottom:1px solid var(--border);padding:10px 0;text-align:center;font-size:13px;color:var(--muted-fg)}
-.logout-bar a{color:var(--cobalt);font-weight:600;cursor:pointer}
+.logout-bar{background:#0D1220;border-bottom:1px solid rgba(255,255,255,0.08);padding:10px 0;text-align:center;font-size:13px;color:var(--muted-fg)}
+.logout-bar a{color:#6B9FFF;font-weight:600;cursor:pointer}
+</style>
+
+<style>
+/* Dark theme override */
+body {
+  background: #0A0E1A !important;
+  color: #E8EDF5 !important;
+}
+.nav {
+  background: rgba(10,14,26,0.95) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+}
+.nav .logo, .nav .nav-links a {
+  color: #E8EDF5 !important;
+}
+.nav .logo span { color: #6B9FFF !important; }
+.nav-links a:hover { color: #6B9FFF !important; }
+footer {
+  background: #060810 !important;
+  border-top: 1px solid rgba(255,255,255,0.08) !important;
+}
 </style>
 </head>
 <body>
@@ -59,7 +80,7 @@
   </div>
 </section>
 
-<section>
+<section style="background:#0A0E1A;padding-bottom:96px">
   <div class="container">
     <div class="tools-grid stagger reveal">
 

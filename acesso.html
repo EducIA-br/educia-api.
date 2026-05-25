@@ -5,20 +5,41 @@
 <title>EducIA — Área do Assinante</title>
 <link rel="stylesheet" href="style.css">
 <style>
-.access-section{min-height:80vh;display:flex;align-items:center;justify-content:center;padding:40px 20px}
-.access-box{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:48px 40px;max-width:440px;width:100%;text-align:center;box-shadow:0 8px 40px rgba(0,0,0,0.06)}
+.access-section{min-height:80vh;display:flex;align-items:center;justify-content:center;padding:40px 20px;background:#0A0E1A}
+.access-box{background:#131929;border:1px solid rgba(255,255,255,0.1);border-radius:24px;padding:48px 40px;max-width:440px;width:100%;text-align:center;box-shadow:0 8px 40px rgba(0,0,0,0.06)}
 .access-icon{font-size:48px;margin-bottom:16px}
 .access-box h2{font-size:24px;font-weight:800;margin-bottom:8px}
 .access-box p{color:var(--muted-fg);font-size:15px;margin-bottom:32px}
-.code-input{width:100%;padding:16px;border:2px solid var(--border);border-radius:12px;font-size:18px;font-weight:700;letter-spacing:.15em;text-align:center;text-transform:uppercase;font-family:'Montserrat',sans-serif;outline:none;transition:border-color .2s;background:var(--bg);color:var(--foreground);box-sizing:border-box}
+.code-input{width:100%;padding:16px;border:2px solid rgba(255,255,255,0.15);border-radius:12px;font-size:18px;font-weight:700;letter-spacing:.15em;text-align:center;text-transform:uppercase;font-family:'Montserrat',sans-serif;outline:none;transition:border-color .2s;background:#0A0E1A;color:#E8EDF5;box-sizing:border-box}
 .code-input:focus{border-color:var(--cobalt)}
 .code-input::placeholder{font-size:14px;font-weight:400;letter-spacing:0;text-transform:none}
 .access-btn{width:100%;margin-top:16px;padding:16px;background:var(--cobalt);color:#fff;border:none;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;font-family:'Montserrat',sans-serif;transition:all .25s}
 .access-btn:hover{background:var(--cobalt-light);box-shadow:0 6px 20px rgba(0,51,160,0.35)}
 .access-btn:disabled{opacity:0.5;cursor:not-allowed}
-.access-error{margin-top:12px;color:#ef4444;font-size:13px;font-weight:600;display:none}
-.access-hint{margin-top:24px;font-size:13px;color:var(--muted-fg)}
+.access-error{margin-top:12px;color:#f87171;font-size:13px;font-weight:600;display:none}
+.access-hint{margin-top:24px;font-size:13px;color:rgba(255,255,255,0.5)}
 .access-hint a{color:var(--cobalt);font-weight:600}
+</style>
+
+<style>
+/* Dark theme override */
+body {
+  background: #0A0E1A !important;
+  color: #E8EDF5 !important;
+}
+.nav {
+  background: rgba(10,14,26,0.95) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+}
+.nav .logo, .nav .nav-links a {
+  color: #E8EDF5 !important;
+}
+.nav .logo span { color: #6B9FFF !important; }
+.nav-links a:hover { color: #6B9FFF !important; }
+footer {
+  background: #060810 !important;
+  border-top: 1px solid rgba(255,255,255,0.08) !important;
+}
 </style>
 </head>
 <body>

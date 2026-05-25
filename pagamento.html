@@ -91,7 +91,7 @@
         <li>Newsletter semanal</li>
         <li>Certificado de conclusão</li>
       </ul>
-      <div class="test-badge">⚠️ Página de teste — nenhum pagamento será cobrado</div>
+      
     </div>
 
     <!-- Formulário -->
@@ -232,11 +232,18 @@ function maskExp(el) {
   el.value = v;
 }
 
+const MP_LINKS = {
+  Pro: 'https://mpago.la/1r6Bhqe',
+  Premium: 'https://mpago.la/2pRqr9b'
+};
+
 function finalizar() {
   const nome = document.getElementById('nome').value.trim();
   const email = document.getElementById('email').value.trim();
   if(!nome || !email) { alert('Por favor, preencha nome e e-mail.'); return; }
-  document.getElementById('successOverlay').style.display = 'flex';
+  const plano = new URLSearchParams(window.location.search).get('plano') || 'Pro';
+  const link = MP_LINKS[plano] || MP_LINKS['Pro'];
+  window.location.href = link;
 }
 </script>
 </body>
