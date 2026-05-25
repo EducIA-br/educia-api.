@@ -240,10 +240,39 @@ const MP_LINKS = {
 function finalizar() {
   const nome = document.getElementById('nome').value.trim();
   const email = document.getElementById('email').value.trim();
-  if(!nome || !email) { alert('Por favor, preencha nome e e-mail.'); return; }
+  const cpf = document.getElementById('cpf').value.trim();
+  const metodo = document.querySelector('.pay-method.selected')?.id?.replace('btn-','') || 'cartao';
+
+  // Validação dados pessoais
+  if (!nome) { alertField('nome', 'Por favor, preencha seu nome completo.'); return; }
+  if (!email || !email.includes('@')) { alertField('email', 'Por favor, preencha um e-mail válido.'); return; }
+  if (!cpf || cpf.length < 14) { alertField('cpf', 'Por favor, preencha seu CPF completo.'); return; }
+
+  // Validação cartão
+  if (metodo === 'cartao') {
+    const cardNum = document.getElementById('cardNum').value.trim();
+    const cardName = document.getElementById('cardName').value.trim();
+    const cardExp = document.getElementById('cardExp').value.trim();
+    const cardCvv = document.getElementById('cardCvv').value.trim();
+    if (!cardNum || cardNum.replace(/\s/g,'').length < 16) { alertField('cardNum', 'Por favor, preencha o número do cartão.'); return; }
+    if (!cardName) { alertField('cardName', 'Por favor, preencha o nome como está no cartão.'); return; }
+    if (!cardExp || cardExp.length < 5) { alertField('cardExp', 'Por favor, preencha a validade do cartão.'); return; }
+    if (!cardCvv || cardCvv.length < 3) { alertField('cardCvv', 'Por favor, preencha o CVV.'); return; }
+  }
+
   const plano = new URLSearchParams(window.location.search).get('plano') || 'Pro';
   const link = MP_LINKS[plano] || MP_LINKS['Pro'];
   window.location.href = link;
+}
+
+function alertField(fieldId, msg) {
+  const el = document.getElementById(fieldId);
+  if (el) {
+    el.style.borderColor = '#ef4444';
+    el.focus();
+    el.addEventListener('input', () => el.style.borderColor = '', { once: true });
+  }
+  alert(msg);
 }
 </script>
 </body>
