@@ -1,7 +1,7 @@
 import nodemailer from 'nodemailer';
 
 export default async function handler(req, res) {
-  const ADMIN_PASS = process.env.ADMIN_PASSWORD || 'educia2026';
+  const ADMIN_PASS = process.env.ADMIN_PASSWORD || 'educia2026';    
 
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
