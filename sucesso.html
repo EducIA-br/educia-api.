@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>EducIA — Pagamento Aprovado!</title>
+<link rel="stylesheet" href="style.css">
+<style>
+body{background:#0A0E1A}
+.sucesso-section{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 20px;background:#0A0E1A}
+.sucesso-box{background:#131929;border:1px solid rgba(255,255,255,0.1);border-radius:24px;padding:56px 48px;max-width:520px;width:100%;text-align:center}
+@media(max-width:480px){.sucesso-box{padding:40px 24px}}
+
+.check-circle{width:80px;height:80px;border-radius:50%;background:rgba(74,222,128,0.15);border:2px solid rgba(74,222,128,0.4);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-size:36px;animation:popIn .5s cubic-bezier(0.175,0.885,0.32,1.275)}
+@keyframes popIn{0%{transform:scale(0);opacity:0}100%{transform:scale(1);opacity:1}}
+
+.sucesso-box h1{font-size:26px;font-weight:800;color:#fff;margin-bottom:12px}
+.sucesso-box p{font-size:15px;color:rgba(255,255,255,0.55);line-height:1.7;margin-bottom:0}
+
+.info-box{background:rgba(0,51,160,0.15);border:1px solid rgba(59,111,224,0.3);border-radius:14px;padding:20px 24px;margin:28px 0;text-align:left}
+.info-box h4{font-size:13px;font-weight:700;color:#6B9FFF;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}
+.info-step{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px}
+.info-step:last-child{margin-bottom:0}
+.step-num{width:24px;height:24px;border-radius:50%;background:#0033A0;color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.info-step p{font-size:14px;color:rgba(255,255,255,0.7);margin:0;line-height:1.5}
+
+.btn-home{display:inline-block;background:#0033A0;color:#fff;padding:14px 36px;border-radius:12px;font-size:15px;font-weight:700;text-decoration:none;transition:all .25s;margin-top:8px}
+.btn-home:hover{background:#3B6FE0;box-shadow:0 6px 20px rgba(0,51,160,0.4)}
+
+.confetti{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.sucesso-section{position:relative;z-index:1}
+</style>
+</head>
+<body>
+
+<canvas class="confetti" id="confetti"></canvas>
+
+<nav class="nav" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo" style="color:#fff">Educ<span style="color:#6B9FFF">IA</span></a>
+    <div class="nav-links">
+      <a href="index.html" style="color:rgba(255,255,255,0.6)">Home</a>
+      <a href="planos.html" style="color:rgba(255,255,255,0.6)">Planos</a>
+      <a href="acesso.html" style="color:#6B9FFF;font-weight:700">🔒 Assinantes</a>
+    </div>
+  </div>
+</nav>
+
+<section class="sucesso-section">
+  <div class="sucesso-box">
+    <div class="check-circle">✅</div>
+    <h1>Pagamento aprovado!</h1>
+    <p>Obrigado por assinar o EducIA! Seu acesso será liberado em breve. Fique de olho no seu e-mail.</p>
+
+    <div class="info-box">
+      <h4>Próximos passos</h4>
+      <div class="info-step">
+        <div class="step-num">1</div>
+        <p>Você receberá um e-mail com seu <strong style="color:#fff">código de acesso</strong> em até alguns minutos.</p>
+      </div>
+      <div class="info-step">
+        <div class="step-num">2</div>
+        <p>Clique em <strong style="color:#fff">🔒 Assinantes</strong> no menu e digite o código para entrar.</p>
+      </div>
+      <div class="info-step">
+        <div class="step-num">3</div>
+        <p>Pronto! Acesso liberado às ferramentas e conteúdos exclusivos. 🎉</p>
+      </div>
+    </div>
+
+    <p style="font-size:13px;color:rgba(255,255,255,0.35);margin-bottom:20px">Não recebeu o e-mail? Entre em contato: <a href="mailto:equipe.educia@gmail.com" style="color:#6B9FFF">equipe.educia@gmail.com</a></p>
+
+    <a href="index.html" class="btn-home">Voltar ao site</a>
+  </div>
+</section>
+
+<script src="script.js"></script>
+<script>
+// Confetti animation
+const canvas = document.getElementById('confetti');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+
+const colors = ['#0033A0','#3B6FE0','#6B9FFF','#4ade80','#fff','#f59e0b'];
+const pieces = Array.from({length: 80}, () => ({
+  x: Math.random() * canvas.width,
+  y: Math.random() * canvas.height - canvas.height,
+  w: Math.random() * 10 + 5,
+  h: Math.random() * 6 + 3,
+  color: colors[Math.floor(Math.random() * colors.length)],
+  speed: Math.random() * 3 + 1,
+  angle: Math.random() * 360,
+  spin: (Math.random() - 0.5) * 4
+}));
+
+let frame = 0;
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  pieces.forEach(p => {
+    ctx.save();
+    ctx.translate(p.x, p.y);
+    ctx.rotate(p.angle * Math.PI / 180);
+    ctx.fillStyle = p.color;
+    ctx.globalAlpha = 0.8;
+    ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+    ctx.restore();
+    p.y += p.speed;
+    p.angle += p.spin;
+    if (p.y > canvas.height) { p.y = -10; p.x = Math.random() * canvas.width; }
+  });
+  frame++;
+  if (frame < 300) requestAnimationFrame(draw);
+  else ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+draw();
+</script>
+</body>
+</html>

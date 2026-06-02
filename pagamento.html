@@ -207,8 +207,8 @@ function finalizar() {
   if (!cpf || cpf.length < 14) { alertField('cpf', 'Por favor, preencha seu CPF completo.'); return; }
 
   const plano = new URLSearchParams(window.location.search).get('plano') || 'Pro';
-  const link = MP_LINKS[plano] || MP_LINKS['Pro'];
-  window.location.href = link;
+  const base = MP_LINKS[plano] || MP_LINKS['Pro'];
+  window.location.href = base;
 }
 
 function alertField(fieldId, msg) {
