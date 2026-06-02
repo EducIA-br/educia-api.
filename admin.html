@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>EducIA — Admin</title>
+<link rel="stylesheet" href="style.css">
+<style>
+body{background:#0A0E1A;color:#E8EDF5}
+.admin-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 20px}
+.admin-box{background:#131929;border:1px solid rgba(255,255,255,0.1);border-radius:24px;padding:40px;max-width:500px;width:100%}
+.admin-box h2{font-size:20px;font-weight:800;margin-bottom:4px}
+.admin-box p{color:rgba(255,255,255,0.5);font-size:14px;margin-bottom:28px}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.field label{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#6B9FFF}
+.field input, .field select{padding:12px 14px;border:1.5px solid rgba(255,255,255,0.1);border-radius:10px;font-size:14px;font-family:'Montserrat',sans-serif;outline:none;background:#0A0E1A;color:#E8EDF5;transition:border-color .2s}
+.field input:focus, .field select:focus{border-color:#3B6FE0}
+.field input::placeholder{color:rgba(255,255,255,0.3)}
+.field select option{background:#131929}
+.send-btn{width:100%;padding:14px;background:#0033A0;color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Montserrat',sans-serif;transition:all .25s;margin-top:8px}
+.send-btn:hover{background:#3B6FE0;box-shadow:0 6px 20px rgba(0,51,160,0.4)}
+.send-btn:disabled{opacity:0.5;cursor:not-allowed}
+.result{margin-top:16px;padding:14px;border-radius:10px;font-size:14px;font-weight:600;text-align:center;display:none}
+.result.success{background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.3);color:#4ade80}
+.result.error{background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);color:#f87171}
+.divider{height:1px;background:rgba(255,255,255,0.08);margin:24px 0}
+.codes-list{display:flex;flex-direction:column;gap:8px;margin-top:12px;max-height:200px;overflow-y:auto}
+.code-item{background:#0A0E1A;border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:10px 14px;font-size:13px;font-family:monospace;letter-spacing:.1em;display:flex;justify-content:space-between;align-items:center}
+.code-item.used{opacity:0.4;text-decoration:line-through}
+.code-badge{font-size:11px;font-weight:700;padding:3px 8px;border-radius:999px}
+.code-badge.available{background:rgba(74,222,128,0.15);color:#4ade80}
+.code-badge.used{background:rgba(239,68,68,0.15);color:#f87171}
+
+/* Login */
+.login-box{background:#131929;border:1px solid rgba(255,255,255,0.1);border-radius:24px;padding:40px;max-width:380px;width:100%;text-align:center}
+.login-box h2{font-size:20px;font-weight:800;margin-bottom:8px}
+.login-box p{color:rgba(255,255,255,0.5);font-size:14px;margin-bottom:24px}
+.login-icon{font-size:48px;margin-bottom:16px}
+</style>
+</head>
+<body>
+
+<!-- Login -->
+<div class="admin-wrap" id="loginScreen">
+  <div class="login-box">
+    <div class="login-icon">🔐</div>
+    <h2>Área Admin</h2>
+    <p>Digite a senha para acessar o painel.</p>
+    <div class="field">
+      <input type="password" id="loginPass" placeholder="Senha de acesso" onkeydown="if(event.key==='Enter') fazerLogin()">
+    </div>
+    <button class="send-btn" onclick="fazerLogin()">Entrar</button>
+    <div class="result" id="loginError">❌ Senha incorreta.</div>
+  </div>
+</div>
+
+<!-- Painel Admin -->
+<div class="admin-wrap" id="adminPanel" style="display:none">
+  <div class="admin-box">
+    <h2>🛠️ Painel Admin EducIA</h2>
+    <p>Envie o código de acesso para um novo assinante.</p>
+
+    <div class="field">
+      <label>Nome do assinante</label>
+      <input type="text" id="nomeAssinante" placeholder="Nome completo">
+    </div>
+    <div class="field">
+      <label>E-mail do assinante</label>
+      <input type="email" id="emailAssinante" placeholder="email@exemplo.com">
+    </div>
+    <div class="field">
+      <label>Plano</label>
+      <select id="planoAssinante">
+        <option value="Pro">Pro — R$29/mês</option>
+        <option value="Premium">Premium — R$69/mês</option>
+      </select>
+    </div>
+
+    <button class="send-btn" id="sendBtn" onclick="enviarCodigo()">📨 Enviar código de acesso</button>
+    <div class="result" id="sendResult"></div>
+
+    <div class="divider"></div>
+
+    <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#6B9FFF;margin-bottom:12px">
+      Códigos disponíveis (<span id="codesCount">0</span>)
+    </div>
+    <div class="codes-list" id="codesList"></div>
+  </div>
+</div>
+
+<script>
+// Senha do admin — troque para uma senha sua!
+const ADMIN_PASS = 'educia2026';
+
+const API_URL = 'https://educia-api-9iq5.vercel.app/api/send-code';
+
+// Controle de códigos no localStorage
+const ALL_CODES = [
+  'EDUCIA-2MTXXXPL','EDUCIA-WT3BGICN','EDUCIA-VPET5YV0',
+  'EDUCIA-21AO0OF1','EDUCIA-4JT3J1F9','EDUCIA-9Y21LNIY',
+  'EDUCIA-UHLGGESD','EDUCIA-EXV9ONXX','EDUCIA-PBCRNDQ2',
+  'EDUCIA-SS4E7G3O','EDUCIA-8ENNRVPL','EDUCIA-0LFNZD9F',
+  'EDUCIA-5QZWJSFZ','EDUCIA-K6CNUKK3','EDUCIA-DMOW3NAX',
+  'EDUCIA-RXAHYE80','EDUCIA-04IUW83J','EDUCIA-0Y73A9Q5',
+  'EDUCIA-R5K63QZR','EDUCIA-MSIHYCO0'
+];
+
+function getUsedCodes() {
+  try { return JSON.parse(localStorage.getItem('usedCodes') || '[]'); } catch { return []; }
+}
+
+function markCodeUsed(code) {
+  const used = getUsedCodes();
+  used.push(code);
+  localStorage.setItem('usedCodes', JSON.stringify(used));
+}
+
+function getNextCode() {
+  const used = getUsedCodes();
+  return ALL_CODES.find(c => !used.includes(c)) || null;
+}
+
+function renderCodes() {
+  const used = getUsedCodes();
+  const available = ALL_CODES.filter(c => !used.includes(c));
+  document.getElementById('codesCount').textContent = available.length;
+  const list = document.getElementById('codesList');
+  list.innerHTML = ALL_CODES.map(c => `
+    <div class="code-item ${used.includes(c) ? 'used' : ''}">
+      <span>${c}</span>
+      <span class="code-badge ${used.includes(c) ? 'used' : 'available'}">${used.includes(c) ? 'Usado' : 'Disponível'}</span>
+    </div>
+  `).join('');
+}
+
+function fazerLogin() {
+  const pass = document.getElementById('loginPass').value;
+  if (pass === ADMIN_PASS) {
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('adminPanel').style.display = 'flex';
+    renderCodes();
+  } else {
+    const err = document.getElementById('loginError');
+    err.style.display = 'block';
+    err.className = 'result error';
+    err.textContent = '❌ Senha incorreta.';
+  }
+}
+
+async function enviarCodigo() {
+  const nome = document.getElementById('nomeAssinante').value.trim();
+  const email = document.getElementById('emailAssinante').value.trim();
+  const plano = document.getElementById('planoAssinante').value;
+  const result = document.getElementById('sendResult');
+  const btn = document.getElementById('sendBtn');
+
+  if (!nome || !email) {
+    result.style.display = 'block';
+    result.className = 'result error';
+    result.textContent = '❌ Preencha nome e e-mail.';
+    return;
+  }
+
+  const code = getNextCode();
+  if (!code) {
+    result.style.display = 'block';
+    result.className = 'result error';
+    result.textContent = '❌ Sem códigos disponíveis! Adicione mais códigos.';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = '⏳ Enviando...';
+  result.style.display = 'none';
+
+  try {
+    const res = await fetch(API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ nome, email, plano, code })
+    });
+
+    const data = await res.json();
+
+    if (res.ok && data.ok) {
+      markCodeUsed(code);
+      renderCodes();
+      result.style.display = 'block';
+      result.className = 'result success';
+      result.textContent = `✅ Código ${code} enviado para ${email}!`;
+      document.getElementById('nomeAssinante').value = '';
+      document.getElementById('emailAssinante').value = '';
+    } else {
+      throw new Error(data.error || 'Erro desconhecido');
+    }
+  } catch(e) {
+    result.style.display = 'block';
+    result.className = 'result error';
+    result.textContent = '❌ Erro ao enviar: ' + e.message;
+  }
+
+  btn.disabled = false;
+  btn.textContent = '📨 Enviar código de acesso';
+}
+</script>
+</body>
+</html>
