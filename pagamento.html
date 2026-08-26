@@ -98,10 +98,20 @@
     <div class="pay-form reveal">
       <h2>Finalize sua assinatura</h2>
 
-      <div class="form-section-title">Seus dados</div>
+      <div class="form-section-title">Dados pessoais</div>
       <div class="form-group">
         <label>Nome completo</label>
-        <input type="text" id="nome" placeholder="Seu nome completo" oninput="this.value=this.value.replace(/[^a-zA-ZÀ-ÿ\s]/g, '')">
+        <input type="text" id="nome" placeholder="Seu nome completo">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>E-mail</label>
+          <input type="email" id="email" placeholder="seu@email.com">
+        </div>
+        <div class="form-group">
+          <label>CPF</label>
+          <input type="text" id="cpf" placeholder="000.000.000-00" maxlength="14" oninput="maskCPF(this)">
+        </div>
       </div>
 
       <div class="form-section-title">Método de pagamento</div>
@@ -163,6 +173,25 @@ document.getElementById('successPlan').textContent = p.name;
 const ul = document.getElementById('summaryFeatures');
 ul.innerHTML = p.features.map(f => `<li>${f}</li>`).join('');
 
+function maskCPF(el) {
+  let v = el.value.replace(/\D/g,'');
+  v = v.replace(/(\d{3})(\d)/,'$1.$2');
+  v = v.replace(/(\d{3})(\d)/,'$1.$2');
+  v = v.replace(/(\d{3})(\d{1,2})$/,'$1-$2');
+  el.value = v;
+}
+
+function maskCard(el) {
+  let v = el.value.replace(/\D/g,'').substring(0,16);
+  el.value = v.replace(/(.{4})/g,'$1 ').trim();
+}
+
+function maskExp(el) {
+  let v = el.value.replace(/\D/g,'');
+  if(v.length >= 2) v = v.substring(0,2) + '/' + v.substring(2,4);
+  el.value = v;
+}
+
 const MP_LINKS = {
   Pro: 'https://mpago.la/1r6Bhqe',
   Premium: 'https://mpago.la/2pRqr9b'
@@ -170,7 +199,13 @@ const MP_LINKS = {
 
 function finalizar() {
   const nome = document.getElementById('nome').value.trim();
-  if (!nome || nome.length < 3) { alertField('nome', 'Por favor, preencha seu nome completo.'); return; }
+  const email = document.getElementById('email').value.trim();
+  const cpf = document.getElementById('cpf').value.trim();
+
+  if (!nome) { alertField('nome', 'Por favor, preencha seu nome completo.'); return; }
+  if (!email || !email.includes('@')) { alertField('email', 'Por favor, preencha um e-mail válido.'); return; }
+  if (!cpf || cpf.length < 14) { alertField('cpf', 'Por favor, preencha seu CPF completo.'); return; }
+
   const plano = new URLSearchParams(window.location.search).get('plano') || 'Pro';
   const base = MP_LINKS[plano] || MP_LINKS['Pro'];
   window.location.href = base;
