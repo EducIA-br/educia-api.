@@ -10,8 +10,9 @@
   .thinker{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:36px;transition:transform .3s,box-shadow .3s}
   .thinker:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.08)}
   .thinker-head{display:flex;align-items:center;gap:16px;margin-bottom:24px}
-  .thinker-avatar{width:56px;height:56px;border-radius:50%;background:rgba(0,51,160,.1);color:var(--cobalt);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;flex-shrink:0;transition:background .3s,color .3s,transform .3s;border:2px solid rgba(0,51,160,.15)}
-  .thinker:hover .thinker-avatar{background:var(--cobalt);color:#fff;transform:scale(1.1)}
+  .thinker-avatar{width:80px;height:80px;border-radius:50%;background:rgba(0,51,160,.1);color:var(--cobalt);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;flex-shrink:0;transition:transform .3s;border:3px solid rgba(0,51,160,.2);overflow:hidden}
+  .thinker-avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+  .thinker:hover .thinker-avatar{transform:scale(1.08)}
   .thinker-name{font-size:20px;font-weight:700}
   .thinker-role{font-size:12px;color:var(--muted-fg);margin-top:2px}
   .thinker p{font-size:14px;color:var(--muted-fg);margin-bottom:16px;line-height:1.7}
@@ -21,9 +22,11 @@
   @keyframes synthPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
   .synthesis strong{font-weight:700}
 
-  .bg-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:0;pointer-events:none}
+  .bg-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:1;pointer-events:none}
   .page-hero{position:relative;overflow:hidden}
-  .page-hero-content{position:relative;z-index:1}
+  .page-hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:.35}
+  .page-hero-overlay{position:absolute;inset:0;z-index:0;background:linear-gradient(180deg,rgba(10,14,26,.55) 0%,rgba(10,14,26,.82) 100%)}
+  .page-hero-content{position:relative;z-index:2}
 </style>
 </head>
 <body>
@@ -45,6 +48,8 @@
 </nav>
 
 <div class="page-hero">
+  <img src="https://images.unsplash.com/photo-1698954634383-eba274a1b1c7?w=1600&q=80&auto=format&fit=crop" alt="" class="page-hero-bg"/>
+  <div class="page-hero-overlay"></div>
   <canvas id="bgCanvas" class="bg-canvas"></canvas>
   <div class="page-hero-content container">
     <span class="eyebrow">Pensadores</span>
@@ -58,7 +63,7 @@
     <div class="thinkers-grid">
       <div class="thinker reveal-left">
         <div class="thinker-head">
-          <div class="thinker-avatar">AK</div>
+          <div class="thinker-avatar"><img src="ailton-krenak.png" alt="Ailton Krenak"></div>
           <div><div class="thinker-name">Ailton Krenak</div><div class="thinker-role">Líder indígena e filósofo</div></div>
         </div>
         <p>Critica o modelo de progresso da modernidade. Defende que a educação deve fortalecer o pertencimento à Terra, a preservação da vida e os vínculos comunitários. Para Krenak, tecnologias e inovações só fazem sentido se respeitarem a vida e os modos de existir das pessoas e da natureza.</p>
@@ -66,7 +71,7 @@
       </div>
       <div class="thinker reveal-right">
         <div class="thinker-head">
-          <div class="thinker-avatar">SA</div>
+          <div class="thinker-avatar"><img src="sergio-amadeu.png" alt="Sérgio Amadeu"></div>
           <div><div class="thinker-name">Sérgio Amadeu</div><div class="thinker-role">Sociólogo e pesquisador de tecnologia</div></div>
         </div>
         <p>Alerta que a tecnologia não é neutra: plataformas digitais e IA podem explorar dados, controlar comportamentos e reproduzir desigualdades. Na educação, defende o ensino da alfabetização tecnológica crítica.</p>

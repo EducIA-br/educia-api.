@@ -36,8 +36,12 @@
   .nav-cards-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
   @media(max-width:900px){.nav-cards-grid{grid-template-columns:repeat(2,1fr)}}
   @media(max-width:560px){.nav-cards-grid{grid-template-columns:1fr}}
-  .nav-card{display:block;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:32px;transition:all .3s;text-align:center}
+  .nav-card{display:block;background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:all .3s;text-align:center}
   .nav-card:hover{border-color:var(--cobalt);transform:translateY(-6px);box-shadow:0 16px 40px rgba(0,51,160,.1)}
+  .nav-card-img{position:relative;width:100%;padding-top:62%;overflow:hidden;background:#0a0e1a}
+  .nav-card-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .4s}
+  .nav-card:hover .nav-card-img img{transform:scale(1.08)}
+  .nav-card-body{padding:28px 24px 32px}
   .nav-card-num{font-size:32px;font-weight:800;color:rgba(0,51,160,.12);margin-bottom:16px}
   .nav-card:hover .nav-card-num{color:var(--cobalt)}
   .nav-card h3{font-size:16px;font-weight:700;margin-bottom:8px;transition:color .3s}
@@ -98,28 +102,40 @@
   <div class="container">
     <div class="nav-cards-grid stagger">
       <a href="sobre.html" class="nav-card">
-        <div class="nav-card-num">01</div>
-        <h3>O que é IA?</h3>
-        <p>Entenda o que é a inteligência artificial, sua origem e por que foi criada.</p>
-        <div class="arrow">Explorar →</div>
+        <div class="nav-card-img"><img src="https://images.unsplash.com/photo-1750365919971-7dd273e7b317?w=600&q=80&auto=format&fit=crop" alt="O que é IA"></div>
+        <div class="nav-card-body">
+          <div class="nav-card-num">01</div>
+          <h3>O que é IA?</h3>
+          <p>Entenda o que é a inteligência artificial, sua origem e por que foi criada.</p>
+          <div class="arrow">Explorar →</div>
+        </div>
       </a>
       <a href="pilares.html" class="nav-card">
-        <div class="nav-card-num">02</div>
-        <h3>Pilares</h3>
-        <p>Os quatro eixos fundamentais que definem o impacto da IA na educação.</p>
-        <div class="arrow">Explorar →</div>
+        <div class="nav-card-img"><img src="assets/estudo-individual.png" alt="Pilares"></div>
+        <div class="nav-card-body">
+          <div class="nav-card-num">02</div>
+          <h3>Pilares</h3>
+          <p>Os quatro eixos fundamentais que definem o impacto da IA na educação.</p>
+          <div class="arrow">Explorar →</div>
+        </div>
       </a>
       <a href="debate.html" class="nav-card">
-        <div class="nav-card-num">03</div>
-        <h3>O Debate</h3>
-        <p>Benefícios e riscos do uso da inteligência artificial nas salas de aula.</p>
-        <div class="arrow">Explorar →</div>
+        <div class="nav-card-img"><img src="assets/debate-card.png" alt="O Debate"></div>
+        <div class="nav-card-body">
+          <div class="nav-card-num">03</div>
+          <h3>O Debate</h3>
+          <p>Benefícios e riscos do uso da inteligência artificial nas salas de aula.</p>
+          <div class="arrow">Explorar →</div>
+        </div>
       </a>
       <a href="pensadores.html" class="nav-card">
-        <div class="nav-card-num">04</div>
-        <h3>Pensadores</h3>
-        <p>Ailton Krenak e Sérgio Amadeu e suas visões sobre tecnologia e educação.</p>
-        <div class="arrow">Explorar →</div>
+        <div class="nav-card-img"><img src="https://images.unsplash.com/photo-1698954634383-eba274a1b1c7?w=600&q=80&auto=format&fit=crop" alt="Pensadores"></div>
+        <div class="nav-card-body">
+          <div class="nav-card-num">04</div>
+          <h3>Pensadores</h3>
+          <p>Ailton Krenak e Sérgio Amadeu e suas visões sobre tecnologia e educação.</p>
+          <div class="arrow">Explorar →</div>
+        </div>
       </a>
     </div>
   </div>
