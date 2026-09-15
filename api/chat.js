@@ -1,3 +1,5 @@
+import fetch from 'node-fetch';
+
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -12,7 +14,6 @@ export default async function handler(req, res) {
   }
 
   const { messages, system } = body || {};
-
   if (!messages || !Array.isArray(messages)) {
     return res.status(400).json({ error: 'Campo messages ausente' });
   }
@@ -32,7 +33,7 @@ export default async function handler(req, res) {
         'Authorization': `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        model: 'llama-3.3-70b-versatile',
+        model: 'llama-3.1-8b-instant',
         max_tokens: 1000,
         messages: groqMessages,
       }),
