@@ -11,31 +11,31 @@
 
 /* Resumo do plano */
 .plan-summary{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:32px;position:sticky;top:100px}
-.plan-summary-badge{display:inline-block;background:rgba(0,51,160,0.08);color:var(--cobalt);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;border-radius:999px;margin-bottom:16px}
+.plan-summary-badge{display:inline-block;background:rgba(0,51,160,0.08);color:var(--cobalt);font-size:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;border-radius:999px;margin-bottom:16px}
 .plan-summary h3{font-size:22px;font-weight:800;margin-bottom:4px}
 .plan-price-big{font-size:38px;font-weight:800;letter-spacing:-0.03em;margin:12px 0}
 .plan-price-big span{font-size:16px;font-weight:400;color:var(--muted-fg)}
 .plan-summary-divider{height:1px;background:var(--border);margin:20px 0}
 .plan-features-list{list-style:none;display:flex;flex-direction:column;gap:10px}
-.plan-features-list li{font-size:14px;display:flex;align-items:center;gap:8px}
-.plan-features-list li::before{content:"✓";width:20px;height:20px;border-radius:50%;background:rgba(0,51,160,0.08);color:var(--cobalt);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.test-badge{margin-top:20px;background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.3);border-radius:10px;padding:12px;font-size:12px;color:#b45309;text-align:center;font-weight:600}
+.plan-features-list li{font-size:16px;display:flex;align-items:center;gap:8px}
+.plan-features-list li::before{content:"✓";width:20px;height:20px;border-radius:50%;background:rgba(0,51,160,0.08);color:var(--cobalt);font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.test-badge{margin-top:20px;background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.3);border-radius:10px;padding:12px;font-size:14px;color:#b45309;text-align:center;font-weight:600}
 
 /* Formulário */
 .pay-form{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:32px}
 .pay-form h2{font-size:20px;font-weight:800;margin-bottom:24px}
-.form-section-title{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--cobalt);margin:24px 0 12px}
+.form-section-title{font-size:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--cobalt);margin:24px 0 12px}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media(max-width:480px){.form-row{grid-template-columns:1fr}}
 .form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:4px}
-.form-group label{font-size:13px;font-weight:600;color:var(--foreground)}
-.form-group input{padding:12px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:14px;font-family:'Montserrat',sans-serif;outline:none;transition:border-color .2s;background:var(--bg);color:var(--foreground)}
+.form-group label{font-size:15px;font-weight:600;color:var(--foreground)}
+.form-group input{padding:12px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:16px;font-family:'Montserrat',sans-serif;outline:none;transition:border-color .2s;background:var(--bg);color:var(--foreground)}
 .form-group input:focus{border-color:var(--cobalt)}
 .form-group input::placeholder{color:var(--muted-fg)}
 
 /* Método de pagamento */
 .pay-methods{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:4px}
-.pay-method{border:1.5px solid var(--border);border-radius:12px;padding:14px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600}
+.pay-method{border:1.5px solid var(--border);border-radius:12px;padding:14px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:10px;font-size:16px;font-weight:600}
 .pay-method:hover{border-color:var(--cobalt)}
 .pay-method.selected{border-color:var(--cobalt);background:rgba(0,51,160,0.05)}
 .pay-method-icon{font-size:22px}
@@ -46,13 +46,13 @@
 
 /* Pix */
 #pix-fields{margin-top:16px;background:var(--muted);border-radius:12px;padding:20px;text-align:center}
-#pix-fields p{font-size:13px;color:var(--muted-fg);margin-top:8px}
+#pix-fields p{font-size:15px;color:var(--muted-fg);margin-top:8px}
 .pix-icon{font-size:40px}
 
 /* Botão pagar */
 .pay-btn{width:100%;margin-top:24px;padding:16px;background:var(--cobalt);color:#fff;border:none;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;font-family:'Montserrat',sans-serif;transition:all .25s}
 .pay-btn:hover{background:var(--cobalt-light);box-shadow:0 6px 20px rgba(0,51,160,0.35)}
-.pay-security{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:12px;font-size:12px;color:var(--muted-fg)}
+.pay-security{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:12px;font-size:14px;color:var(--muted-fg)}
 
 /* Sucesso */
 .success-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:999;align-items:center;justify-content:center}
@@ -108,7 +108,7 @@
       <div style="background:var(--muted);border-radius:12px;padding:20px;text-align:center;margin-bottom:8px">
         <div style="font-size:36px">⚡</div>
         <strong style="font-size:15px">Pagamento via Pix</strong>
-        <p style="font-size:13px;color:var(--muted-fg);margin-top:8px">Após confirmar, você será redirecionado para o Mercado Pago para realizar o pagamento. O acesso é liberado em até 5 minutos após a confirmação.</p>
+        <p style="font-size:15px;color:var(--muted-fg);margin-top:8px">Após confirmar, você será redirecionado para o Mercado Pago para realizar o pagamento. O acesso é liberado em até 5 minutos após a confirmação.</p>
       </div>
 
       <button class="pay-btn" onclick="finalizar()">Confirmar assinatura</button>

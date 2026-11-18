@@ -10,7 +10,7 @@
   .section{background:var(--deep-dark)}
   .section-intro h2,.section-intro .eyebrow{color:#fff}
   .section-intro .eyebrow{color:var(--cobalt-light)}
-  .section-intro p{color:rgba(255,255,255,.5)}
+  .section-intro p{color:rgba(255,255,255,.8)}
   .debate-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;max-width:1000px;margin:0 auto}
   @media(max-width:768px){.debate-grid{grid-template-columns:1fr}}
   .debate-card{background:rgba(255,255,255,.04);border-radius:16px;padding:32px;border:1px solid rgba(255,255,255,.08);transition:transform .3s,box-shadow .3s}
@@ -25,7 +25,7 @@
   .benefit .debate-icon{background:rgba(59,111,224,.15);color:var(--cobalt-light)}
   .risk .debate-icon{background:rgba(192,57,43,.15);color:#e74c3c}
   .debate-head h3{font-size:18px;color:#fff}
-  .debate-card ul li{display:flex;gap:12px;margin-bottom:16px;font-size:14px;color:rgba(255,255,255,.55);opacity:0;transform:translateX(-10px);transition:opacity .4s,transform .4s}
+  .debate-card ul li{display:flex;gap:12px;margin-bottom:16px;font-size:16px;color:rgba(255,255,255,.85);opacity:0;transform:translateX(-10px);transition:opacity .4s,transform .4s}
   .debate-card.visible ul li{opacity:1;transform:translateX(0)}
   .debate-card.visible ul li:nth-child(1){transition-delay:.1s}
   .debate-card.visible ul li:nth-child(2){transition-delay:.2s}
@@ -35,9 +35,9 @@
   .debate-card ul li::before{content:"";width:6px;height:6px;border-radius:50%;margin-top:8px;flex-shrink:0}
   .benefit ul li::before{background:var(--cobalt-light)}
   .risk ul li::before{background:#e74c3c}
-  .debate-quote{margin-top:24px;padding:16px;border-radius:12px;font-size:12px;font-style:italic}
-  .benefit .debate-quote{background:rgba(59,111,224,.08);border:1px solid rgba(59,111,224,.15);color:rgba(255,255,255,.5)}
-  .risk .debate-quote{background:rgba(192,57,43,.08);border:1px solid rgba(192,57,43,.15);color:rgba(255,255,255,.5)}
+  .debate-quote{margin-top:24px;padding:16px;border-radius:12px;font-size:14px;font-style:italic}
+  .benefit .debate-quote{background:rgba(59,111,224,.08);border:1px solid rgba(59,111,224,.15);color:rgba(255,255,255,.85)}
+  .risk .debate-quote{background:rgba(192,57,43,.08);border:1px solid rgba(192,57,43,.15);color:rgba(255,255,255,.85)}
   footer{background:#060810}
 
   .bg-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:1;pointer-events:none}
@@ -112,9 +112,9 @@
 <section class="section" style="background:var(--muted)">
   <div class="container">
     <div class="section-intro reveal" style="text-align:center;max-width:640px;margin:0 auto 48px">
-      <span class="eyebrow">Regulamentação</span>
+      <span class="eyebrow" style="color:#185FA5">Regulamentação</span>
       <h2 style="color:#185FA5">O que o MEC diz sobre o uso de IA</h2>
-      <p>Em 2026, o Ministério da Educação lançou o <strong style="color:#185FA5">Referencial para o Uso e Desenvolvimento Responsáveis de IA na Educação</strong>, com diretrizes para todos os níveis de ensino.</p>
+      <p style="color:#2D3748">Em 2026, o Ministério da Educação lançou o <strong style="color:#185FA5">Referencial para o Uso e Desenvolvimento Responsáveis de IA na Educação</strong>, com diretrizes para todos os níveis de ensino.</p>
     </div>
     <div class="cards-grid stagger">
       <div class="card reveal">
